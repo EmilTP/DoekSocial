@@ -3,9 +3,6 @@
 <head>
     <link rel="stylesheet" href="../Styling/Home.css">
     <link rel="stylesheet" href="../lib/CSS/bootstrap.css">
-    <link rel="stylesheet" href="../lib/CSS/bootstrap-grid.css">
-    <link rel="stylesheet" href="../lib/CSS/bootstrap-reboot.css">
-
 
     <meta charset="UTF-8">
     <style></style>
@@ -15,30 +12,32 @@
 <body>
 
 <div class="container">
+
     <div class="title">
         <h1>DØK-Social</h1>
     </div>
 
     <div class="navbar-inverse">
-        <a href="Home.html">Home</a>
-        <a href="Events.html">Events</a>
-        <a href="MyEvents.html">My Events</a>
-        <a href="MyProfile.html">My profile</a>
-        <a href="Login.html">Log out</a>
+        <button id="home-button">Home</button>
+        <button id="events-button">Events</button>
+        <button id="myEvents-button">My Events</button>
+        <button id="logout-button">Log out</button>
     </div>
 
-    <p>Welcome to DØK-Social!</p>
-    <p1>
-        A social platform for all DØKKERS getting socially involved in events
-        hosted, coordinated and attended by DØKKERS. On the platform you will have the opportunity
-        to stay up to date in the social activites on DØK by creating and attending events from your own DØK-profile.
-    </p1>
-
 </div>
+<p>Welcome to DØK-Social!</p>
+<p1>
+    A social platform for all DØKKERS getting socially involved in events
+    hosted, coordinated and attended by DØKKERS. On the platform you will have the opportunity
+    to stay up to date in the social activites on DØK by creating and attending events from your own DØK-profile.
+</p1>
+
 
 <footer>Made by Emil Tønder-Prien</footer>
 
-<script> src="lib/JS/bootstrap.js"</script>
+<script src="../lib/JS/jquery-3.2.1.js"></script>
+<script src="../lib/JS/bootstrap.js"></script>
+<script src="../JavaScript/sdk.js"></script>
 
 </body>
 </html>
