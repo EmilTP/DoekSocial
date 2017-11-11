@@ -5,7 +5,7 @@
     <title>New User</title>
 
 
-<link rel="stylesheet" href="../Styling/Login.css">
+    <link rel="stylesheet" href="../Styling/Login.css">
     <link rel="stylesheet" href="../lib/CSS/bootstrap.css">
 
 
@@ -16,28 +16,41 @@
 
 
 <div class="login">
-        <div class="title">
-            <h1>Welcome to <br> Døk-Social!</h1>
+    <div class="title">
+        <h1>Welcome to <br> Døk-Social!</h1>
+    </div>
+
+    <div class="login">
+        <div class="margin-bottom">
+            <input type="text" placeholder="First name" id="first-name">
         </div>
 
-        <div class="login">
-            <div class="margin-bottom">
-                <input type="text" value="" placeholder="E-mail" id="login-mail">
-            </div>
-
-            <div class="margin-bottom">
-                <input type="text" value="" placeholder="Username" id="new-name">
-            </div>
-
-            <div class="margin-bottom">
-                <input type="password" value="" placeholder="Password" id="new-pass">
-            </div>
-
-            <button class="btn" id="NewUser-button">Create account</button>
+        <div class="margin-bottom">
+            <input type="text" placeholder="Last name" id="last-name">
         </div>
+
+        <div class="margin-bottom">
+            <input type="text" placeholder="E-mail" id="login-mail">
+        </div>
+
+        <div class="margin-bottom">
+            <input type="text" placeholder="Password" id="new-pass">
+        </div>
+
+        <div class="margin-bottom">
+            <input type="password" placeholder="Verify Password" id="verify-pass">
+        </div>
+
+        <button style="margin-bottom: 40px" class="btn" id="NewUser-button">Create new user</button>
+    </div>
 </div>
 
-<script>src="lib/JS/bootstrap.js"</script>
+<script src="../lib/JS/jquery-3.2.1.js"></script>
+<script src="../lib/JS/bootstrap.js"></script>
+<script src="../JavaScript/sdk.js"></script>
+<script src="../JavaScript/NewUser.js"></script>
+
+
 
 </body>
 </html>

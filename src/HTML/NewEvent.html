@@ -20,13 +20,6 @@
         <h1>DØK-Social</h1>
     </div>
 
-    <div class="navbar-inverse">
-        <a href="Home.html">Home</a>
-        <a href="Events.html">Events</a>
-        <a href="MyEvents.html">My Events</a>
-        <a href="MyProfile.html">My profile</a>
-        <a href="Login.html">Log out</a>
-    </div>
 
     <div style="padding-left:16px">
 
@@ -69,12 +62,19 @@
 
         <br>
 
-        <button href="MyEvents.html">Create New Event</a>
+        <button>Create New Event</button>
+
     </div>
 
     <footer>Made by Emil Tønder-Prien</footer>
 
-    <script>src = "lib/JS/bootstrap.js"</script>
+    <script src="../lib/JS/jquery-3.2.1.js"></script>
+    <script src="../lib/JS/bootstrap.js"></script>
+    <script src="../JavaScript/sdk.js"></script>
+    <script src="../JavaScript/NewEvent.js"></script>
+    <script>
+        SDK.User.loadNav();
+    </script>
 
 
 </body>

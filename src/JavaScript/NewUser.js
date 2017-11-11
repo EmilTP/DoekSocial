@@ -1,20 +1,23 @@
 $(document).ready(() => {
 
-    SDK.User.loadNav();
+    SDK.Student.loadNavbar();
 
     $("#NewUser-button").click(() => {
 
-        const email = $("#new-name").val();
-        const password = $("#new-pass").val();
+        const firstName = $("#first-name").val();
+        const lastName = $("#last-name").val();
+        const email = $("#login-mail").val();
+        const newPass = $("#new-pass").val();
+        const verifyPass = $("#verify-pass").val();
 
-        SDK.User.login(email, password, (err, data) => {
+        SDK.Student.registerStudent(firstName, lastName, email, newPass, verifyPass (err, data) => {
             if (err && err.xhr.status === 401) {
                 $(".margin-bottom").addClass("has-error");
             }
             else if (err) {
-                console.log("BAd stuff happened")
+                console.log("Something went wrong")
             } else {
-                window.location.href = "Login.html";
+                window.location.href = "Home.html";
             }
         });
 

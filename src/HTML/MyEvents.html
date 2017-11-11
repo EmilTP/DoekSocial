@@ -1,82 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     <link rel="stylesheet" href="../Styling/MyEvents.css">
     <link rel="stylesheet" href="../lib/CSS/bootstrap.css">
 
 
     <meta charset="UTF-8">
-    <title>My Events</title>
+    <title>Checkout - DIS Bookstore 2017</title>
 
 </head>
 <body>
 
+<div class="title">
+    <h1>DØK-Social</h1>
+</div>
+
 <div class="container">
 
-    <div class="title">
-        <h1>DØK-Social</h1>
+    <div class="row" id="nav-container"></div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="page-header"></div>
+        </div>
     </div>
+    <div class="row">
+        <div class="col-lg-2 img-container"></div>
+        <div class="col-lg-10 profile-info"></div>
+        <div class="col-lg-12">
 
-    <div class="navbar-inverse">
-        <a href="Home.html">Home</a>
-        <a href="Events.html">Events</a>
-        <a href="MyEvents.html">My Events</a>
-        <a href="Login.html">Log out</a>
-    </div>
+            <h3>Attending Events</h3>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Event name</th>
+                    <th>location</th>
+                    <th>Price</th>
+                    <th>Event date</th>
+                    <th>Description</th>
+                </tr>
+                </thead>
+                <tbody id="basket-tbody">
 
-    <div style="padding-left:16px">
+                </tbody>
+            </table>
 
-        <p>My events</p>
+            <h3>My Events</h3>
 
-        <a class="btn" href="NewEvent.html">Create New Event</a>
-        <a class="btn" href="EventsAttend.html">Events I'm attending</a>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Event name</th>
+                    <th>location</th>
+                    <th>Price</th>
+                    <th>Event date</th>
+                    <th>Description</th>
+                </tr>
+                </thead>
+                <tbody id="basket-tbody">
 
-    </div>
-    <br>
-    <div class="container">
-        <div class="row">
-            <div class="col">MY EVENT 1
-                <img class="d-flex mr-3" src="DØKSOCIAL IMAGES/cbs_logo.jpg">
-                <a class="btn" href="NewEvent.html">Update event</a>
-                <a class="btn" >Delete event</a>
-            </div>
-            <div class="col">MY EVENT 2
-                <img class="d-flex mr-3" src="DØKSOCIAL IMAGES/cbs_logo.jpg">
-                <a class="btn" href="NewEvent.html">Update event</a>
-                <a class="btn" >Delete event</a>
-            </div>
-            <div class="col">MY EVENT 3
-                <img class="d-flex mr-3" src="DØKSOCIAL IMAGES/cbs_logo.jpg">
-                <a class="btn" href="NewEvent.html">Update event</a>
-                <a class="btn" >Delete event</a>
-            </div>
-
-            <div class="w-100"></div>
-
-            <div class="col">MY EVENT 4
-                <img class="d-flex mr-3" src="DØKSOCIAL IMAGES/cbs_logo.jpg">
-                <a class="btn" href="NewEvent.html">Update event</a>
-                <a class="btn" >Delete event</a>
-            </div>
-
-            <div class="col">MY EVENT 5
-                <img class="d-flex mr-3" src="DØKSOCIAL IMAGES/cbs_logo.jpg">
-                <a class="btn" href="NewEvent.html">Update event</a>
-                <a class="btn" >Delete event</a>
-            </div>
-            <div class="col">MY EVENT 6
-                <img class="d-flex mr-3" src="DØKSOCIAL IMAGES/cbs_logo.jpg">
-                <a class="btn" href="NewEvent.html">Update event</a>
-                <a class="btn" >Delete event</a>
-            </div>
+                </tbody>
+            </table>
         </div>
     </div>
 
-    <footer>Made by Emil Tønder-Prien</footer>
+</div>
 
-    <script>src="lib/JS/bootstrap.js"</script>
+<footer>Made by Emil Tønder-Prien</footer>
 
-
+<script src="../lib/JS/jquery-3.2.1.js"></script>
+<script src="../lib/JS/bootstrap.js"></script>
+<script src="../JavaScript/sdk.js"></script>
+<script src="../JavaScript/MyEvents.js"></script>
+<script>
+    SDK.Student.loadNavbar();
+</script>
 
 
 </body>

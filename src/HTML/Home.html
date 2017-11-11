@@ -11,33 +11,41 @@
 </head>
 <body>
 
+<div class="title">
+    <h1>DØK-Social</h1>
+</div>
+
 <div class="container">
 
-    <div class="title">
-        <h1>DØK-Social</h1>
-    </div>
+    <div class="row" id="nav-container"></div>
 
-    <div class="navbar-inverse">
-        <button id="home-button">Home</button>
-        <button id="events-button">Events</button>
-        <button id="myEvents-button">My Events</button>
-        <button id="logout-button">Log out</button>
+    <div class="row">
+        <div class="col-lg-12">
+
+
+
+        </div>
+        <p>Welcome to DØK-Social!</p>
+        <p1>
+            A social platform for all DØKKERS getting socially involved in events
+            hosted, coordinated and attended by DØKKERS. On the platform you will have the opportunity
+            to stay up to date in the social activites on DØK by creating and attending events from your own
+            DØK-profile.
+        </p1>
+
     </div>
 
 </div>
-<p>Welcome to DØK-Social!</p>
-<p1>
-    A social platform for all DØKKERS getting socially involved in events
-    hosted, coordinated and attended by DØKKERS. On the platform you will have the opportunity
-    to stay up to date in the social activites on DØK by creating and attending events from your own DØK-profile.
-</p1>
-
 
 <footer>Made by Emil Tønder-Prien</footer>
 
 <script src="../lib/JS/jquery-3.2.1.js"></script>
 <script src="../lib/JS/bootstrap.js"></script>
 <script src="../JavaScript/sdk.js"></script>
+<script>
+    SDK.Student.loadNavbar();
+</script>
+
 
 </body>
 </html>

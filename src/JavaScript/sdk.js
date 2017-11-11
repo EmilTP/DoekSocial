@@ -25,36 +25,36 @@ const SDK = {
         });
 
     },
-    Book: {
-        addToBasket: (book) => {
-            let basket = SDK.Storage.load("basket");
+    Event: {
+        addToCheckout: (event) => {
+            let eventBasket = SDK.Storage.load("eventBasket");
 
             //Has anything been added to the basket before?
-            if (!basket) {
-                return SDK.Storage.persist("basket", [{
+            if (!eventBasket) {
+                return SDK.Storage.persist("eventBasket", [{
                     count: 1,
-                    book: book
+                    event: event
                 }]);
             }
 
             //Does the book already exist?
-            let foundBook = basket.find(b => b.book.id === book.id);
-            if (foundBook) {
-                let i = basket.indexOf(foundBook);
-                basket[i].count++;
+            let foundEvent = eventBasket.find(b => b.event.id === event.id);
+            if (foundEvent) {
+                let i = eventBasket.indexOf(foundEvent);
+                eventBasket[i].count++;
             } else {
-                basket.push({
+                eventBasket.push({
                     count: 1,
-                    book: book
+                    event: event
                 });
             }
 
-            SDK.Storage.persist("basket", basket);
+            SDK.Storage.persist("eventBasket", eventBasket);
         },
-        findAll: (cb) => {
+        findAllEvent: (cb) => {
             SDK.request({
                 method: "GET",
-                url: "/books",
+                url: "/events",
                 headers: {
                     filter: {
                         include: ["authors"]
@@ -62,14 +62,25 @@ const SDK = {
                 }
             }, cb);
         },
-        create: (data, cb) => {
+
+        createEvent: (data, cb) => {
             SDK.request({
                 method: "POST",
-                url: "/books",
+                url: "/events",
                 data: data,
                 headers: {authorization: SDK.Storage.load("tokenId")}
             }, cb);
+        },
+
+        updateEvent: (data, cb) => {
+            SDK.request({
+                method: "PUT",
+                url: "/events" + SDK.Event.current().id + "/update-event",
+                data: data,
+                headers: {authorization: SDK.Storage.load("idEvent")}
+            }, cb);
         }
+
     },
     Author: {
         findAll: (cb) => {
@@ -88,24 +99,43 @@ const SDK = {
         findMine: (cb) => {
             SDK.request({
                 method: "GET",
-                url: "/orders/" + SDK.User.current().id + "/allorders",
+                url: "/students/" + SDK.User.current().id + "/events",
                 headers: {
                     authorization: SDK.Storage.load("tokenId")
                 }
             }, cb);
         }
     },
-    User: {
-        findAll: (cb) => {
-            SDK.request({method: "GET", url: "/staffs"}, cb);
+    Student: {
+        findAllStudents: (cb) => {
+            SDK.request({
+                method: "GET",
+                url: "/students"
+            }, cb);
         },
-        current: () => {
-            return SDK.Storage.load("user");
+        currentStudent: () => {
+            return SDK.Storage.load("student");
         },
-        logOut: () => {
-            SDK.Storage.remove("tokenId");
-            SDK.Storage.remove("userId");
-            SDK.Storage.remove("user");
+
+        registerStudent: (firstName, lastName, email, newPass, verifyPass, cb) => {
+            SDK.request({
+                data: {
+                    firstName: firstName,
+                    lastName: lastName,
+                    email: email,
+                    newPass: newPass,
+                    verifyPass: verifyPass
+                },
+                url: "/register",
+                method: "POST",
+                headers: {authorization: SDK.Storage.load("idtokens")}
+            }, cb);
+
+        },
+        logout: () => {
+            SDK.Storage.remove("idtokens");
+            SDK.Storage.remove("IdStudent");
+            SDK.Storage.remove("Student");
             window.location.href = "Login.html";
         },
         login: (email, password, cb) => {
@@ -121,34 +151,34 @@ const SDK = {
                 //On login-error
                 if (err) return cb(err);
 
-                SDK.Storage.persist("tokenId", data.id);
-                SDK.Storage.persist("userId", data.userId);
-                SDK.Storage.persist("user", data.user);
+                SDK.Storage.persist("idtokens", data.id);
+                SDK.Storage.persist("IdStudent", data.IdStudent);
+                SDK.Storage.persist("Student", data.Student);
 
                 cb(null, data);
 
             });
         },
-        loadNav: (cb) => {
-            $("#nav-container").load("nav.html", () => {
-                const currentUser = SDK.User.current();
-                if (currentUser) {
+
+        loadNavbar: (cb) => {
+            $("#nav-container").load("navbar.html", () => {
+                const currentStudent = SDK.Student.currentStudent();
+                if (currentStudent) {
                     $(".navbar-right").html(`
-            <li><a href="my-page.html">Your orders</a></li>
-            <li><a href="#" id="logout-link">Logout</a></li>
+            <li><a href="Home.html" id="logout-link">Logout</a></li>
           `);
                 } else {
                     $(".navbar-right").html(`
-            <li><a href="login.html">Log-in <span class="sr-only">(current)</span></a></li>
+            <li><a href="Login.html">Login <span class="sr-only">(currentStudent)</span></a></li>
           `);
                 }
-                $("#logout-link").click(() => SDK.User.logOut());
+                $("#logout-link").click(() => SDK.Student.logout());
                 cb && cb();
             });
         }
     },
     Storage: {
-        prefix: "BookStoreSDK",
+        prefix: "DoekSocialSDK",
         persist: (key, value) => {
             window.localStorage.setItem(SDK.Storage.prefix + key, (typeof value === 'object') ? JSON.stringify(value) : value)
         },
