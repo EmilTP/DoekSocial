@@ -15,6 +15,7 @@ $(document).ready(() => {
                 console.log("Something went wrong")
             } else {
                 window.location.href = "Home.html";
+                SDK.Encryption.encryptDecrypt()
             }
         });
 

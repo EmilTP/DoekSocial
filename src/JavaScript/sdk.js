@@ -39,18 +39,8 @@ const SDK = {
                 url: "/register",
                 method: "POST",
                 headers: {authorization: SDK.Storage.load("token")}
-            }, (err, data) => {
-
-                //On login-error
-                if (err) return cb(err);
-
-                SDK.Storage.persist("token", data.id);
-                SDK.Storage.persist("IdStudent", data.Student);
-                SDK.Storage.persist("Student", data.Student);
-
-                cb(null, data);
-            });
-        },
+            }, cb);
+        }
     },
 
     Login: {
@@ -67,6 +57,8 @@ const SDK = {
                 //On login-error
                 if (err) return cb(err);
 
+                console.log(data)
+
                 SDK.Storage.persist("token", data.id);
                 SDK.Storage.persist("IdStudent", data.Student);
                 SDK.Storage.persist("Student", data.Student);
@@ -77,10 +69,23 @@ const SDK = {
         },
     },
 
+    Encryption: {
+        encryptDecrypt(input) {
+            let key = ['J', 'M', 'F'];
+            let output = [];
+
+            for (let i = 0; i < input.length; i++) {
+                let charCode = input.charCodeAt(i) ^ key[i % key.length].charCodeAt(0);
+                output.push(String.fromCharCode(charCode));
+            }
+            return output.join("");
+        }
+    },
+
     Student: {
 
         currentStudent: () => {
-            return SDK.Storage.load("student");
+            return SDK.Storage.load("Student");
         },
 
         getProfile: (cb) => {

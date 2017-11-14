@@ -18,6 +18,7 @@ $(document).ready(() => {
                 console.log(err)
             } else {
                 window.location.href = "Home.html";
+                SDK.Encryption.encryptDecrypt()
             }
         });
 
