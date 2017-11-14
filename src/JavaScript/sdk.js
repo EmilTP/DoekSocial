@@ -27,7 +27,7 @@ const SDK = {
     },
 
     Register: {
-        registerStudent: (firstName, lastName, email, newPass, verifyPass, cb) => {
+        registerStudent: (firstName, lastName, email, newPass, verifyPass, cb, data) => {
             SDK.request({
                 data: {
                     firstName: firstName,
@@ -39,15 +39,22 @@ const SDK = {
                 url: "/register",
                 method: "POST",
                 headers: {authorization: SDK.Storage.load("token")}
-            }, cb);
+            }, (err, data) => {
 
+                //On login-error
+                if (err) return cb(err);
+
+                SDK.Storage.persist("token", data.id);
+                SDK.Storage.persist("IdStudent", data.Student);
+                SDK.Storage.persist("Student", data.Student);
+
+                cb(null, data);
+            });
         },
     },
 
     Login: {
-
-
-        login: (email, password, cb) => {
+        login: (email, password, cb, data) => {
             SDK.request({
                 data: {
                     email: email,
@@ -72,11 +79,32 @@ const SDK = {
 
     Student: {
 
+        currentStudent: () => {
+            return SDK.Storage.load("student");
+        },
+
         getProfile: (cb) => {
             SDK.request({
                 method: "GET",
-                url: "/profile"
+                url: "students/profile"
             }, cb);
+        },
+
+        loadNavbar: (cb) => {
+            $("#nav-container").load("navbar.html", () => {
+                const currentStudent = SDK.Student.currentStudent();
+                if (currentStudent) {
+                    $(".navbar-right").html(`
+            <li><a href="Home.html" id="logout-link">Logout</a></li>
+          `);
+                } else {
+                    $(".navbar-right").html(`
+            <li><a href="Login.html">Login <span class="sr-only">(currentStudent)</span></a></li>
+          `);
+                }
+                $("#logout-link").click(() => SDK.Student.logout());
+                cb && cb();
+            });
         },
 
         getAttendingEvents: (cb) => {
@@ -89,18 +117,19 @@ const SDK = {
             }, cb);
         },
 
-        currentStudent: () => {
-            return SDK.Storage.load("student");
-        },
-
         logout: () => {
             SDK.Storage.remove("token");
             SDK.Storage.remove("IdStudent");
             SDK.Storage.remove("Student");
             window.location.href = "Home.html";
-        },
+        }
+    },
 
     Event: {
+
+        currentEvent: () => {
+            return SDK.Storage.load("event");
+        },
 
         createEvent: (data, cb) => {
             SDK.request({
@@ -112,12 +141,9 @@ const SDK = {
         },
 
         deleteEvent: (data, cb) => {
-
-            const currentEvent = SDK.Event.currentEvent();
-
             SDK.request({
                 method: "PUT",
-                url: "/events" + SDK.Event.createEvent().id + "/delete-event",
+                url: "/events" + SDK.Event.currentEvent().id + "/delete-event",
                 data: data,
                 headers: {authorization: SDK.Storage.load("EventId")}
             }, cb);
@@ -126,7 +152,7 @@ const SDK = {
         updateEvent: (data, cb) => {
             SDK.request({
                 method: "PUT",
-                url: "/events" + SDK.Event.createEvent().id + "/update-event",
+                url: "/events" + SDK.Event.currentEvent().id + "/update-event",
                 data: data,
                 headers: {authorization: SDK.Storage.load("EventId")}
             }, cb);
@@ -149,7 +175,7 @@ const SDK = {
                     count: 1,
                     event: event
                 }]);
-            },
+            }
 
             //Does the Event already exist?
             let foundEvent = eventBasket.find(b => b.event.id === event.id);
@@ -169,31 +195,13 @@ const SDK = {
         getAttendingStudents: (cb) => {
             SDK.request({
                 method: "GET",
-                url: "/events/" + SDK.Event.current().id + "/students",
+                url: "/events/" + SDK.Event.currentEvent().id + "/students",
                 headers: {
                     authorization: SDK.Storage.load("token")
                 }
             }, cb);
         },
 
-    },
-
-        loadNavbar: (cb) => {
-            $("#nav-container").load("navbar.html", () => {
-                const currentStudent = SDK.Student.currentStudent();
-                if (currentStudent) {
-                    $(".navbar-right").html(`
-            <li><a href="Home.html" id="logout-link">Logout</a></li>
-          `);
-                } else {
-                    $(".navbar-right").html(`
-            <li><a href="Login.html">Login <span class="sr-only">(currentStudent)</span></a></li>
-          `);
-                }
-                $("#logout-link").click(() => SDK.Student.logout());
-                cb && cb();
-            });
-        }
     },
 
     Storage: {

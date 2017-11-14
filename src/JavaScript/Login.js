@@ -7,7 +7,7 @@ $(document).ready(() => {
         const email = $("#login-name").val();
         const password = $("#login-password").val();
 
-        SDK.Student.login(email, password, (err, data) => {
+        SDK.Login.login(email, password, (err) => {
             if (err && err.xhr.status === 401) {
                 $(".margin-bottom").addClass("has-error");
             }

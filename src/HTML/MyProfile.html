@@ -2,9 +2,76 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>My Profile</title>
+
+    <link rel="stylesheet" href="../Styling/MyEvents.css">
+    <link rel="stylesheet" href="../lib/CSS/bootstrap.css">
+
 </head>
 <body>
+
+<div class="title">
+    <h1>DØK-Social</h1>
+</div>
+
+<div class="container">
+
+    <div class="row" id="nav-container"></div>
+
+    <h3>My Profile</h3>
+
+    <h4>Here is a little bit of information about myself: </h4>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>Email</th>
+        </tr>
+        </thead>
+        <tbody id="basket-tbody1">
+
+        </tbody>
+    </table>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="page-header"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-2 img-container"></div>
+        <div class="col-lg-10 profile-info"></div>
+        <div class="col-lg-12">
+
+            <h3>My Events</h3>
+
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Event name</th>
+                    <th>location</th>
+                    <th>Price</th>
+                    <th>Event date</th>
+                    <th>Description</th>
+                </tr>
+                </thead>
+                <tbody id="basket-tbody">
+
+                </tbody>
+            </table>
+
+            <footer>Made by Emil Tønder-Prien</footer>
+
+            <script src="../lib/JS/jquery-3.2.1.js"></script>
+            <script src="../lib/JS/bootstrap.js"></script>
+            <script src="../JavaScript/sdk.js"></script>
+            <script src="../JavaScript/MyAttendingEvents.js"></script>
+            <script>
+                SDK.Student.loadNavbar();
+            </script>
 
 </body>
 </html>

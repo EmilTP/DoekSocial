@@ -3,7 +3,7 @@ $(document).ready(() => {
     SDK.Student.loadNavbar();
     const $EventList = $("#event-list");
 
-    SDK.Event.findAllEvent((err, Event) => {
+    SDK.Event.getEvents((err, Event) => {
 
         Event.forEach((event) => {
 
@@ -51,7 +51,7 @@ $(document).ready(() => {
             $("#purchase-modal").modal("toggle");
             const idEvent = $(this).data("Event-id");
             const event = event.find((event) => event.id === idEvent);
-            SDK.Event.addToCheckout(Event);
+            SDK.Event.joinEvent(Event);
 
         }));
 
