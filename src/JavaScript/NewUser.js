@@ -10,7 +10,7 @@ $(document).ready(() => {
         const newPass = $("#new-pass").val();
         const verifyPass = $("#verify-pass").val();
 
-        SDK.Register.registerStudent(firstName, lastName, email, newPass, verifyPass, (err) => {
+        SDK.Register.registerStudent(firstName, lastName, email, newPass, verifyPass, (err, data) => {
             if (err && err.xhr.status === 401) {
                 $(".margin-bottom").addClass("has-error");
             }

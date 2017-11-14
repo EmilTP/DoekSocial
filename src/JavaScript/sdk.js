@@ -27,7 +27,7 @@ const SDK = {
     },
 
     Register: {
-        registerStudent: (firstName, lastName, email, newPass, verifyPass, cb, data) => {
+        registerStudent: (firstName, lastName, email, newPass, verifyPass, cb) => {
             SDK.request({
                 data: {
                     firstName: firstName,
@@ -38,8 +38,15 @@ const SDK = {
                 },
                 url: "/register",
                 method: "POST",
-                headers: {authorization: SDK.Storage.load("token")}
-            }, cb);
+
+            }, (err, data) => {
+
+                if (err) return cb(err);
+
+                SDK.Storage.persist("crypted", data);
+
+                cb(null, data);
+            });
         }
     },
 
@@ -59,8 +66,9 @@ const SDK = {
 
                 console.log(data)
 
-                SDK.Storage.persist("token", data.id);
-                SDK.Storage.persist("IdStudent", data.Student);
+                SDK.Storage.persist("crypted", data);
+                SDK.Storage.persist("Token", data.id);
+                SDK.Storage.persist("idStudent", data.Student);
                 SDK.Storage.persist("Student", data.Student);
 
                 cb(null, data);
@@ -117,7 +125,7 @@ const SDK = {
                 method: "GET",
                 url: "/students/" + SDK.Student.currentStudent().id + "/events",
                 headers: {
-                    authorization: SDK.Storage.load("token")
+                    authorization: SDK.Storage.load("Token")
                 }
             }, cb);
         },
