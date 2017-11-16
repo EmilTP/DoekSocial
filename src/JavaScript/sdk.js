@@ -33,17 +33,21 @@ const SDK = {
                     firstName: firstName,
                     lastName: lastName,
                     email: email,
-                    newPass: newPass,
-                    verifyPass: verifyPass
+                    password: newPass,
+                    verifyPassword: verifyPass
                 },
                 url: "/register",
                 method: "POST",
 
             }, (err, data) => {
 
-                if (err) return cb(err);
+                if (err) {
+                    return cb(err);
+                }
 
-                SDK.Storage.persist("crypted", data);
+                console.log(data);
+
+                SDK.Storage.persist(data);
 
                 cb(null, data);
             });
@@ -51,7 +55,7 @@ const SDK = {
     },
 
     Login: {
-        login: (email, password, cb, data) => {
+        login: (email, password, cb) => {
             SDK.request({
                 data: {
                     email: email,
@@ -62,32 +66,16 @@ const SDK = {
             }, (err, data) => {
 
                 //On login-error
-                if (err) return cb(err);
+                if (err) {
+                    return cb(err);
+                }
 
-                console.log(data)
-
-                SDK.Storage.persist("crypted", data);
-                SDK.Storage.persist("Token", data.id);
-                SDK.Storage.persist("idStudent", data.Student);
-                SDK.Storage.persist("Student", data.Student);
+                SDK.Storage.persist("token", data);
 
                 cb(null, data);
 
             });
         },
-    },
-
-    Encryption: {
-        encryptDecrypt(input) {
-            let key = ['J', 'M', 'F'];
-            let output = [];
-
-            for (let i = 0; i < input.length; i++) {
-                let charCode = input.charCodeAt(i) ^ key[i % key.length].charCodeAt(0);
-                output.push(String.fromCharCode(charCode));
-            }
-            return output.join("");
-        }
     },
 
     Student: {
@@ -131,7 +119,7 @@ const SDK = {
         },
 
         logout: () => {
-            SDK.Storage.remove("token");
+            SDK.Storage.remove("Token");
             SDK.Storage.remove("IdStudent");
             SDK.Storage.remove("Student");
             window.location.href = "Home.html";
@@ -149,7 +137,7 @@ const SDK = {
                 method: "POST",
                 url: "/events",
                 data: data,
-                headers: {authorization: SDK.Storage.load("token")}
+                headers: {authorization: SDK.Storage.load("Token")}
             }, cb);
         },
 
