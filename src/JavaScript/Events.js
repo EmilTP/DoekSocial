@@ -3,11 +3,15 @@ $(document).ready(() => {
     SDK.Student.loadNavbar();
     const $EventList = $("#event-list");
 
+
     SDK.Event.getEvents((err, Event) => {
+
+        console.log(Event);
 
         Event.forEach((event) => {
 
-            const bookHtml = ` <!--Tegnet her gør, at man bare kan skrive det som almindelig tekst, og ikke skrive " + + ". -->
+
+            const eventHtml = ` <!--Tegnet her gør, at man bare kan skrive det som almindelig tekst, og ikke skrive " + + ". -->
         <div class="col-lg-4 book-container">
             <div class="panel panel-default">
                 <div class="panel-heading">
@@ -43,7 +47,7 @@ $(document).ready(() => {
             </div>
         </div>`;
 
-            $bookList.append(bookHtml);
+            $EventList.append(eventHtml);
 
         });
 

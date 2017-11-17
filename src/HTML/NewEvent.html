@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 
-    <link rel="stylesheet" href="../Styling/NewEvent.css">
+    <link rel="stylesheet" href="../Styling/Login.css">
     <link rel="stylesheet" href="../lib/CSS/bootstrap.css">
 
     <meta charset="UTF-8">
@@ -11,67 +11,59 @@
 <body>
 
 
-<div class="container">
-
+<div class="login">
     <div class="title">
         <h1>DØK-Social</h1>
-    </div>
-
-
-    <div style="padding-left:16px">
-
         <p>Create a new DØK event</p>
-
-        <form>
-            <div class="form-group">
-                <label for="exampleFormControlInput1">Event title</label>
-                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Event title">
-            </div>
-
-            <div class="form-group">
-                <label for="exampleFormControlInput1">Event location</label>
-                <input type="text" class="form-control" id="exampleFormControlInput2" placeholder="Event location">
-            </div>
-
-            <div class="form-group">
-                <label for="exampleFormControlInput1">Event date</label>
-                <input type="text" class="form-control" id="exampleFormControlInput3" placeholder="Event date">
-            </div>
-
-            <div class="form-group">
-                <label for="exampleFormControlInput1">Event price</label>
-                <input type="" class="form-control" id="exampleFormControlInput4" placeholder="Event price">
-            </div>
-
-            <div class="form-check">
-                <label for="exampleFormControlTextarea1">Event description</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-            </div>
-        </form>
-
-        <br>
-
-        <label for="">Image</label>
-        <form action="">
-            <input type="file" name="pic" accept="image/*">
-            <input type="submit">
-        </form>
-
-        <br>
-
-        <button style="margin-bottom: 40px" class="btn" id="NewEvent-button">Create new Event</button>
-
+        <a class="btn" href="Home.html">Back to home page</a>
     </div>
+</div>
+
+<div class="login">
+    <div class="margin-bottom">
+        <input type="text" class="margin-bottom" id="event-name" placeholder="Event name">
+    </div>
+
+    <div class="margin-bottom">
+        <input type="text" class="margin-bottom" id="event-location" placeholder="Event location">
+    </div>
+
+    <div class="margin-bottom">
+        <input type="text" class="margin-bottom" id="event-date" placeholder="Event date">
+    </div>
+
+    <div class="margin-bottom">
+        <input type="text" class="margin-bottom" id="event-price" placeholder="Event price">
+    </div>
+
+    <div class="form-check">
+        <textarea type="text" class="margin-bottom" id="event-description" rows="3"></textarea>
+    </div>
+
+    <br>
+
+    <label for="">Image</label>
+    <form action="">
+        <input type="file" name="pic" accept="image/*">
+        <input type="submit">
+    </form>
+
+    <br>
+
+    <button style="margin-bottom: 40px" class="btn" id="NewEvent-button">Create new Event</button>
+
 
     <footer>Made by Emil Tønder-Prien</footer>
 
-    <script src="../lib/JS/jquery-3.2.1.js"></script>
-    <script src="../lib/JS/bootstrap.js"></script>
-    <script src="../JavaScript/sdk.js"></script>
-    <script src="../JavaScript/NewEvent.js"></script>
-    <script>
-        SDK.Student.loadNavbar();
-    </script>
+</div>
+
+<script src="../lib/JS/jquery-3.2.1.js"></script>
+<script src="../lib/JS/bootstrap.js"></script>
+<script src="../JavaScript/sdk.js"></script>
+<script src="../JavaScript/NewEvent.js"></script>
+<script>
+    SDK.Student.loadNavbar();
+</script>
 
 
 </body>

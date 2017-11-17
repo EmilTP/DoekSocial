@@ -17,7 +17,7 @@ $(document).ready(() => {
             else if (err) {
                 console.log(err)
             } else {
-                window.alert(firstName + "Succesful sign-up!");
+                window.alert("Succesful sign-up!");
                 window.location.href = "Home.html";
             }
         });

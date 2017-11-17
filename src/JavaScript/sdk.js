@@ -70,7 +70,9 @@ const SDK = {
                     return cb(err);
                 }
 
-                SDK.Storage.persist("token", data);
+                /* SDK.Storage.persist("token", data);*/
+                SDK.Storage.persist("token", "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJVc2VyIjoibWlsczI1N0Bob3RtYWlsLmNvbSIsImlzcyI6IlNURlUiLCJleHAiOjE1MTA5MTAxMTQ2OTB9.RoitWCkx3HRWWpAtjWwBOq3aZzoraV2FA5yQ1uJyIGvPVjgF8uYdhTLoAtoY18Vz1PzCCCHV3oLlFbivxRL0gg");
+                SDK.Storage.persist("Student", 1);
 
                 cb(null, data);
 
@@ -80,7 +82,7 @@ const SDK = {
 
     Student: {
 
-        currentStudent: () => {
+        current: () => {
             return SDK.Storage.load("Student");
         },
 
@@ -93,14 +95,14 @@ const SDK = {
 
         loadNavbar: (cb) => {
             $("#nav-container").load("navbar.html", () => {
-                const currentStudent = SDK.Student.currentStudent();
+                const currentStudent = SDK.Student.current();
                 if (currentStudent) {
                     $(".navbar-right").html(`
             <li><a href="Home.html" id="logout-link">Logout</a></li>
           `);
                 } else {
                     $(".navbar-right").html(`
-            <li><a href="Login.html">Login <span class="sr-only">(currentStudent)</span></a></li>
+            <li><a href="Login.html">Login <span class="sr-only">(current)</span></a></li>
           `);
                 }
                 $("#logout-link").click(() => SDK.Student.logout());
@@ -111,7 +113,7 @@ const SDK = {
         getAttendingEvents: (cb) => {
             SDK.request({
                 method: "GET",
-                url: "/students/" + SDK.Student.currentStudent().id + "/events",
+                url: "/students/" + SDK.Student.current().id + "/events",
                 headers: {
                     authorization: SDK.Storage.load("Token")
                 }
@@ -119,7 +121,7 @@ const SDK = {
         },
 
         logout: () => {
-            SDK.Storage.remove("Token");
+            SDK.Storage.remove("token");
             SDK.Storage.remove("IdStudent");
             SDK.Storage.remove("Student");
             window.location.href = "Home.html";
@@ -132,12 +134,19 @@ const SDK = {
             return SDK.Storage.load("event");
         },
 
-        createEvent: (data, cb) => {
+        createEvent: (eventName, eventLocation, eventDate, eventPrice, eventDescription, cb) => {
             SDK.request({
                 method: "POST",
                 url: "/events",
-                data: data,
-                headers: {authorization: SDK.Storage.load("Token")}
+                data: {
+                    eventName: eventName,
+                    location: eventLocation,
+                    price: eventPrice,
+                    description: eventDescription,
+                    eventDate: eventDate
+                }
+                ,
+                headers: {authorization: SDK.Storage.load("token")}
             }, cb);
         },
 
@@ -160,9 +169,11 @@ const SDK = {
         },
 
         getEvents: (cb) => {
+
             SDK.request({
                 method: "GET",
                 url: "/events",
+                headers: {authorization: SDK.Storage.load("token")}
 
             }, cb);
         },

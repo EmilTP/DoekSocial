@@ -12,7 +12,7 @@ $(document).ready(() => {
                 $(".margin-bottom").addClass("Error");
             }
             else if (err) {
-                console.log("Something went wrong")
+                console.log("Something went wrong " + err.xhr.status)
             } else {
                 console.log(data);
                 window.location.href = "Home.html";
