@@ -8,7 +8,7 @@ $(document).ready(() => {
 
     $(".profile-info").html(`
     <dl>
-        <dt>ID</dt>
+        <dt>Id</dt>
         <dd>${currentStudent.id}</dd>
         <dt>First name</dt>
         <dd>${currentStudent.firstName}
@@ -38,10 +38,10 @@ $(document).ready(() => {
         <dd>${currentStudent.event.location}
         
         <dt>Description</dt>
-        <dd>${currentStudent.events.description}</dd>
+        <dd>${currentStudent.event.description}</dd>
         
         <dt>Date</dt>
-        <dd>${currentStudent.event.date}</dd>
+        <dd>${currentStudent.event.eventDate}</dd>
     </dl>
     
 

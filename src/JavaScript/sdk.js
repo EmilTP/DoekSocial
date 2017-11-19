@@ -155,7 +155,7 @@ const SDK = {
                 method: "PUT",
                 url: "/events" + SDK.Event.currentEvent().id + "/delete-event",
                 data: data,
-                headers: {authorization: SDK.Storage.load("EventId")}
+                headers: {authorization: SDK.Storage.load("idEvent")}
             }, cb);
         },
 
@@ -164,7 +164,7 @@ const SDK = {
                 method: "PUT",
                 url: "/events" + SDK.Event.currentEvent().id + "/update-event",
                 data: data,
-                headers: {authorization: SDK.Storage.load("EventId")}
+                headers: {authorization: SDK.Storage.load("idEvent")}
             }, cb);
         },
 
@@ -174,7 +174,6 @@ const SDK = {
                 method: "GET",
                 url: "/events",
                 headers: {authorization: SDK.Storage.load("token")}
-
             }, cb);
         },
 

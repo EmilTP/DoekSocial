@@ -3,10 +3,11 @@ $(document).ready(() => {
     SDK.Student.loadNavbar();
     const $EventList = $("#event-list");
 
-
     SDK.Event.getEvents((err, Event) => {
 
         console.log(Event);
+
+        Event = JSON.parse(Event);
 
         Event.forEach((event) => {
 
