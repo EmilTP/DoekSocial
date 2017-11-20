@@ -89,8 +89,11 @@ const SDK = {
         getProfile: (cb) => {
             SDK.request({
                 method: "GET",
-                url: "students/profile"
-            }, cb);
+                url: "students/profile",
+                headers: {authorization: SDK.Storage.load("token")}
+
+            },
+                cb);
         },
 
         loadNavbar: (cb) => {
@@ -115,7 +118,7 @@ const SDK = {
                 method: "GET",
                 url: "/students/" + SDK.Student.current().id + "/events",
                 headers: {
-                    authorization: SDK.Storage.load("Token")
+                    authorization: SDK.Storage.load("token")
                 }
             }, cb);
         },

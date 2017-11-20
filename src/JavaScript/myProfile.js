@@ -1,51 +1,80 @@
 $(document).ready(() => {
 
     SDK.Student.loadNavbar();
+    const $myProfile = $("#my-profile");
+    const $AttendingEvents = $("#attending-events");
 
-    const currentStudent = SDK.Student.currentStudent();
-    const $basketTbodyEvent = $("#basket-tbodyEvent");
-    const $basketTbodyProfile = $("#basket-tbodyProfile");
+    SDK.Student.getProfile((err, Student) => {
 
-    $(".profile-info").html(`
-    <dl>
-        <dt>Id</dt>
-        <dd>${currentStudent.id}</dd>
-        <dt>First name</dt>
-        <dd>${currentStudent.firstName}
-        <dt>Last name</dt>
-        <dd>${currentStudent.lastName}
-        <dt>Email</dt>
-        <dd>${currentStudent.email}</dd>
-        
-     </dl>
-  `);
+        Student = JSON.parse(Student);
 
-    $(".event-info").html(`
-    <dl>
-        <dt>ID</dt>
-        <dd>${currentStudent.event.id}</dd>
-        
-        <dt>Price</dt>
-        <dd>${currentStudent.event.price}</dd>
-        
-        <dt>Owner</dt>
-        <dd>${currentStudent.event.owner}
-       
-        <dt>Name</dt>
-        <dd>${currentStudent.event.name}</dd>
-        
-        <dt>Location</dt>
-        <dd>${currentStudent.event.location}
-        
-        <dt>Description</dt>
-        <dd>${currentStudent.event.description}</dd>
-        
-        <dt>Date</dt>
-        <dd>${currentStudent.event.eventDate}</dd>
-    </dl>
-    
+        Student.forEach((student) => {
 
-    `)
 
-});
+        const profileHtml = ` <!--Tegnet her gør, at man bare kan skrive det som almindelig tekst, og ikke skrive " + + ". -->
+        <div class="col-lg-4 event-container">
+            <div class="panel panel-default">
+                
+                <div class="panel-body">
+                    <div class="col-lg-8">
+                      <dl>
+                        <dt>Id</dt>
+                        <dd>${student.idStudent}</dd>
+                        <dt>First Name</dt>
+                        <dd>${student.firstName}</dd>
+                        <dt>Last Name</dt>
+                        <dd>${student.lastName}</dd>
+                        <dt>Email</dt>
+                        <dd>${student.email}</dd>
+                      </dl>
+                    </div>
+                </div>
+            </div>
+        </div>`;
+
+        $myProfile.append(profileHtml);
+
+    });
+
+
+    SDK.Student.getAttendingEvents((err, Student) => {
+
+        Student = JSON.parse(Student);
+
+        Student.forEach((student) => {
+
+        const eventHtml = ` <!--Tegnet her gør, at man bare kan skrive det som almindelig tekst, og ikke skrive " + + ". -->
+        <div class="col-lg-4 event-container">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">${event.eventName}</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="col-lg-8">
+                      <dl>
+                        <dt>Description</dt>
+                        <dd>${event.description}</dd>
+                        <dt>Owner</dt>
+                        <dd>${event.owner}</dd>
+                        <dt>Date</dt>
+                        <dd>${event.eventDate}</dd>
+                        <dt>Location</dt>
+                        <dd>${event.location}</dd>
+                      </dl>
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <div class="row">
+                        <div class="col-lg-4 price-label">
+                            <p>Kr. <span class="price-amount">${event.price}</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>`;
+
+        $AttendingEvents.append(eventHtml);
+    });
+
+    });
 

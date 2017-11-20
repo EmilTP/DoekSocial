@@ -14,70 +14,44 @@
     <h1>DØK-Social</h1>
 </div>
 
+
 <div class="container">
 
     <div class="row" id="nav-container"></div>
-    <div class="col-lg-10 profile-info"></div>
-    <div class="col-lg-12">
-
-        <h3>My Profile</h3>
-
-        <h4>Here is a little bit of information about myself: </h4>
-
-        <table class="table">
-            <thead>
-            <tr>
-                <th>Id</th>
-                <th>First name</th>
-                <th>Last name</th>
-                <th>Email</th>
-            </tr>
-            </thead>
-            <tbody id="basket-tbodyProfile">
-
-            </tbody>
-        </table>
-
-    </div>
 
     <div class="row">
         <div class="col-lg-12">
-            <div class="page-header"></div>
+
+            <div class="page-header">
+                <h1>My profile</h1>
+            </div>
+
+            <div class="row" id="my-profile">
+                <!--My profile skulle gernes sendes ind i her. -->
+            </div>
+
+
+            <div class="page-header">
+                <h1>My attending events</h1>
+            </div>
+
+            <div class="row" id="attending-events">
+                <!--Attending events isten skulle gernes sendes ind i her. -->
+            </div>
+
+
         </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-10 event-info"></div>
-        <div class="col-lg-12">
 
-            <h3>My Events</h3>
-
-            <table class="table">
-                <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Price</th>
-                    <th>Owner</th>
-                    <th>Event Name</th>
-                    <th>location</th>
-                    <th>Description</th>
-                    <th>Event date</th>
-                </tr>
-                </thead>
-                <tbody id="basket-tbodyEvent">
-
-                </tbody>
-            </table>
-        </div>
         <footer>Made by Emil Tønder-Prien</footer>
 
         <script src="../lib/JS/jquery-3.2.1.js"></script>
         <script src="../lib/JS/bootstrap.js"></script>
         <script src="../JavaScript/sdk.js"></script>
-        <script src="../JavaScript/MyAttendingEvents.js"></script>
+        <script src="../JavaScript/myProfile.js"></script>
         <script>
             SDK.Student.loadNavbar();
         </script>
-    </div>
-</div>
+
+
 </body>
 </html>

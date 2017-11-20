@@ -8,7 +8,7 @@ $(document).ready(() => {
     const $nothingInEventBasketContainer = $("#nothing-in-basket-container");
 
     function loadEventBasket() {
-        const currentStudent = SDK.Student.currentStudent();
+        const currentStudent = SDK.Student.current();
         const eventBasket = SDK.Storage.load("eventBasket") || [];
         let total = 0;
 

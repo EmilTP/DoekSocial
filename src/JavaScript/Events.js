@@ -5,23 +5,18 @@ $(document).ready(() => {
 
     SDK.Event.getEvents((err, Event) => {
 
-        console.log(Event);
-
         Event = JSON.parse(Event);
 
         Event.forEach((event) => {
 
 
             const eventHtml = ` <!--Tegnet her gør, at man bare kan skrive det som almindelig tekst, og ikke skrive " + + ". -->
-        <div class="col-lg-4 book-container">
+        <div class="col-lg-4 event-container">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title">${event.eventName}</h3>
                 </div>
                 <div class="panel-body">
-                    <div class="col-lg-4">
-                        <img src="${event.imgUrl}"/>
-                    </div>
                     <div class="col-lg-8">
                       <dl>
                         <dt>Description</dt>
