@@ -6,9 +6,9 @@ $(document).ready(() => {
 
     SDK.Student.getProfile((err, Student) => {
 
-        Student = JSON.parse(Student);
 
-        Student.forEach((student) => {
+        student = JSON.parse(Student);
+
 
 
         const profileHtml = ` <!--Tegnet her gør, at man bare kan skrive det som almindelig tekst, og ikke skrive " + + ". -->
@@ -34,16 +34,14 @@ $(document).ready(() => {
 
         $myProfile.append(profileHtml);
 
-    });
 
+        SDK.Student.getAttendingEvents((err, Student) => {
 
-    SDK.Student.getAttendingEvents((err, Student) => {
+            Student = JSON.parse(Student);
 
-        Student = JSON.parse(Student);
+            Student.forEach((student) => {
 
-        Student.forEach((student) => {
-
-        const eventHtml = ` <!--Tegnet her gør, at man bare kan skrive det som almindelig tekst, og ikke skrive " + + ". -->
+                const eventHtml = ` <!--Tegnet her gør, at man bare kan skrive det som almindelig tekst, og ikke skrive " + + ". -->
         <div class="col-lg-4 event-container">
             <div class="panel panel-default">
                 <div class="panel-heading">
@@ -73,8 +71,10 @@ $(document).ready(() => {
             </div>
         </div>`;
 
-        $AttendingEvents.append(eventHtml);
-    });
+                $AttendingEvents.append(eventHtml);
+            });
 
+        });
     });
+});
 

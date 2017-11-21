@@ -70,9 +70,9 @@ const SDK = {
                     return cb(err);
                 }
 
-                /* SDK.Storage.persist("token", data);*/
-                SDK.Storage.persist("token", "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJVc2VyIjoibWlsczI1N0Bob3RtYWlsLmNvbSIsImlzcyI6IlNURlUiLCJleHAiOjE1MTA5MTAxMTQ2OTB9.RoitWCkx3HRWWpAtjWwBOq3aZzoraV2FA5yQ1uJyIGvPVjgF8uYdhTLoAtoY18Vz1PzCCCHV3oLlFbivxRL0gg");
-                SDK.Storage.persist("Student", 1);
+                SDK.Storage.persist("Student", data);
+                SDK.Storage.persist("token", data);
+
 
                 cb(null, data);
 
@@ -89,7 +89,7 @@ const SDK = {
         getProfile: (cb) => {
             SDK.request({
                 method: "GET",
-                url: "students/profile",
+                url: "/students/profile",
                 headers: {authorization: SDK.Storage.load("token")}
 
             },
