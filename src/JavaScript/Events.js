@@ -5,10 +5,11 @@ $(document).ready(() => {
 
     SDK.Event.getEvents((cb, Event) => {
 
+        console.log(Event);
+
         Event = JSON.parse(Event);
 
         Event.forEach((event) => {
-
 
             const eventHtml = ` <!--Tegnet her gør, at man bare kan skrive det som almindelig tekst, og ikke skrive " + + ". -->
         <div class="col-lg-4 event-container">

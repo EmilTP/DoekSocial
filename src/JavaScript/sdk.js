@@ -11,7 +11,7 @@ const SDK = {
 
         let token = {
             "authorization": localStorage.getItem("token")
-        }
+        };
 
         $.ajax({
             url: SDK.serverURL + options.url,
@@ -86,6 +86,7 @@ const SDK = {
 
         current: () => {
             return SDK.Storage.load("token");
+
         },
 
         getProfile: (cb) => {
@@ -100,6 +101,7 @@ const SDK = {
 
         loadNavbar: (cb) => {
             $("#nav-container").load("navbar.html", () => {
+
                 const currentStudent = SDK.Student.current();
                 console.log(currentStudent);
 
@@ -132,6 +134,7 @@ const SDK = {
             SDK.Storage.remove("token");
             SDK.Storage.remove("IdStudent");
             SDK.Storage.remove("Student");
+            /*localStorage.removeItem("token");*/
             window.location.href = "Home.html";
         }
     },
@@ -181,7 +184,11 @@ const SDK = {
             SDK.request({
                 method: "GET",
                 url: "/events",
-                headers: {authorization: SDK.Storage.load("token")}
+                headers: {
+                    filter: {
+                        include: ["events"]
+                    }
+                }
             }, cb);
         },
 
