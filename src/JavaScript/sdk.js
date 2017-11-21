@@ -51,7 +51,7 @@ const SDK = {
 
                 console.log(data);
 
-                localStorage.setItem("token", data);
+                SDK.Storage.persist("token", data);
 
                 cb(null, data);
             });
@@ -74,7 +74,7 @@ const SDK = {
                     return cb(err);
                 }
 
-                localStorage.setItem("token", data);
+               SDK.Storage.persist("token", data);
 
                 cb(null, data);
 

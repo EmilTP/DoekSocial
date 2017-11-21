@@ -7,7 +7,7 @@ $(document).ready(() => {
     SDK.Student.getProfile((cb, Student) => {
 
 
-        student = JSON.parse(Student);
+        Student = JSON.parse(Student);
 
 
         const profileHtml = ` <!--Tegnet her gør, at man bare kan skrive det som almindelig tekst, og ikke skrive " + + ". -->
