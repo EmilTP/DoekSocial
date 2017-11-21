@@ -3,7 +3,7 @@ $(document).ready(() => {
     SDK.Student.loadNavbar();
     const $EventList = $("#event-list");
 
-    SDK.Event.getEvents((err, Event) => {
+    SDK.Event.getEvents((cb, Event) => {
 
         Event = JSON.parse(Event);
 

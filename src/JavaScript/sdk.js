@@ -2,17 +2,21 @@ const SDK = {
     serverURL: "http://localhost:8080/api",
     request: (options, cb) => { //Vigtigste funktioner, der laver en AJAX request. Kan sende et request, asynkront.
 
-        let headers = {};
-        if (options.headers) {
-            Object.keys(options.headers).forEach((h) => {
-                headers[h] = (typeof options.headers[h] === 'object') ? JSON.stringify(options.headers[h]) : options.headers[h];
-            });
+        /* let headers = {};
+         if (options.headers) {
+             Object.keys(options.headers).forEach((h) => {
+                 headers[h] = (typeof options.headers[h] === 'object') ? JSON.stringify(options.headers[h]) : options.headers[h];
+             });
+         }*/
+
+        let token = {
+            "authorization": localStorage.getItem("token")
         }
 
         $.ajax({
             url: SDK.serverURL + options.url,
             method: options.method,
-            headers: headers,
+            headers: token,
             contentType: "application/json",
             dataType: "json",
             data: JSON.stringify(options.data),
@@ -47,7 +51,7 @@ const SDK = {
 
                 console.log(data);
 
-                SDK.Storage.persist(data);
+                localStorage.setItem("token", data);
 
                 cb(null, data);
             });
@@ -70,9 +74,7 @@ const SDK = {
                     return cb(err);
                 }
 
-                SDK.Storage.persist("Student", data);
-                SDK.Storage.persist("token", data);
-
+                localStorage.setItem("token", data);
 
                 cb(null, data);
 
@@ -83,22 +85,24 @@ const SDK = {
     Student: {
 
         current: () => {
-            return SDK.Storage.load("Student");
+            return SDK.Storage.load("token");
         },
 
         getProfile: (cb) => {
             SDK.request({
-                method: "GET",
-                url: "/students/profile",
-                headers: {authorization: SDK.Storage.load("token")}
+                    method: "GET",
+                    url: "/students/profile",
+                    headers: {authorization: SDK.Storage.load("token")}
 
-            },
+                },
                 cb);
         },
 
         loadNavbar: (cb) => {
             $("#nav-container").load("navbar.html", () => {
                 const currentStudent = SDK.Student.current();
+                console.log(currentStudent);
+
                 if (currentStudent) {
                     $(".navbar-right").html(`
             <li><a href="Home.html" id="logout-link">Logout</a></li>
@@ -110,7 +114,8 @@ const SDK = {
                 }
                 $("#logout-link").click(() => SDK.Student.logout());
                 cb && cb();
-            });
+
+            })
         },
 
         getAttendingEvents: (cb) => {

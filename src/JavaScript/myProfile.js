@@ -4,7 +4,7 @@ $(document).ready(() => {
     const $myProfile = $("#my-profile");
     const $AttendingEvents = $("#attending-events");
 
-    SDK.Student.getProfile((err, Student) => {
+    SDK.Student.getProfile((cb, Student) => {
 
 
         student = JSON.parse(Student);
