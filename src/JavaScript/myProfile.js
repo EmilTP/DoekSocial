@@ -11,25 +11,33 @@ $(document).ready(() => {
 
 
         const profileHtml = ` <!--Tegnet her gør, at man bare kan skrive det som almindelig tekst, og ikke skrive " + + ". -->
-        <div class="col-lg-4 event-container">
-            <div class="panel panel-default">
-                
-                <div class="panel-body">
-                    <div class="col-lg-8">
-                      <dl>
-                        <dt>Id</dt>
-                        <dd>${Student.idStudent}</dd>
-                        <dt>First Name</dt>
-                        <dd>${Student.firstName}</dd>
-                        <dt>Last Name</dt>
-                        <dd>${Student.lastName}</dd>
-                        <dt>Email</dt>
-                        <dd>${Student.email}</dd>
-                      </dl>
-                    </div>
-                </div>
-            </div>
-        </div>`;
+       
+<div class="container">
+<p>Here is some information about myself: </p>
+
+    <table class="table table-bordered">
+       
+       <thread>
+           <tr>
+              <th>Id</th>
+              <th>First Name</th> 
+              <th>Last Name</th>
+              <th>Email</th> 
+           </tr>     
+        </thread>
+
+        <tbody>
+            <tr>
+            <td>${Student.idStudent}</td>
+            <td>${Student.firstName}</td>
+            <td>${Student.lastName}</td>
+            <td>${Student.email}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+                      
+             `;
 
         $myProfile.append(profileHtml);
 
