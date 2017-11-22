@@ -35,9 +35,7 @@ $(document).ready(() => {
             </tr>
         </tbody>
     </table>
-</div>
-                      
-             `;
+</div> `;
 
         $myProfile.append(profileHtml);
 
@@ -49,35 +47,32 @@ $(document).ready(() => {
             Student.forEach((student) => {
 
                 const eventHtml = ` <!--Tegnet her gør, at man bare kan skrive det som almindelig tekst, og ikke skrive " + + ". -->
-        <div class="col-lg-4 event-container">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">${event.eventName}</h3>
-                </div>
-                <div class="panel-body">
-                    <div class="col-lg-8">
-                      <dl>
-                        <dt>Description</dt>
-                        <dd>${event.description}</dd>
-                        <dt>Owner</dt>
-                        <dd>${event.owner}</dd>
-                        <dt>Date</dt>
-                        <dd>${event.eventDate}</dd>
-                        <dt>Location</dt>
-                        <dd>${event.location}</dd>
-                      </dl>
-                    </div>
-                </div>
-                <div class="panel-footer">
-                    <div class="row">
-                        <div class="col-lg-4 price-label">
-                            <p>Kr. <span class="price-amount">${event.price}</span></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>`;
+ 
+ <div class="container">
+<p>Here are the events I'm attending: </p>
 
+    <table class="table table-bordered">
+       
+       <thread>
+           <tr>
+              <th>Description</th>
+              <th>Owner</th> 
+              <th>Date</th>
+              <th>Location</th> 
+              <th>Price</th> 
+           </tr>     
+        </thread>
+
+        <tbody>
+            <tr>
+            <td>${event.description}</td>
+            <td>${event.owner}</td>
+            <td>${event.eventDate}</td>
+            <td>${event.location}</td>
+            </tr>
+        </tbody>
+    </table>
+</div> `;
                 $AttendingEvents.append(eventHtml);
             });
 
