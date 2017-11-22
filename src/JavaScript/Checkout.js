@@ -25,10 +25,8 @@ $(document).ready(() => {
             total += subtotal;
             $modalTbody.append(`
         <tr>
-            <td>
-                <img src="${entry.event.imgUrl}" height="120"/>
-            </td>
-            <td>${entry.event.title}</td>
+           
+            <td>${entry.event.eventName}</td>
             <td>${entry.count}</td>
             <td>kr. ${entry.event.price}</td>
             <td>kr. ${subtotal}</td>
@@ -68,7 +66,7 @@ $(document).ready(() => {
     $("#checkout-button").click(() => {
         const eventBasket = SDK.Storage.load("eventBasket");
         SDK.Order.create({
-            createdById: SDK.Student.currentStudent().id,
+            createdById: SDK.Student.current().id,
             orderItems: eventBasket.map(orderItem => {
                 return {
                     count: orderItem.count,

@@ -13,7 +13,7 @@ $(document).ready(() => {
         const profileHtml = ` <!--Tegnet her gør, at man bare kan skrive det som almindelig tekst, og ikke skrive " + + ". -->
        
 <div class="container">
-<p>Here is some information about myself: </p>
+
 
     <table class="table table-bordered">
        
@@ -48,7 +48,7 @@ $(document).ready(() => {
 
                 const eventHtml = ` <!--Tegnet her gør, at man bare kan skrive det som almindelig tekst, og ikke skrive " + + ". -->
  
- <div class="container">
+<div class="container">
 <p>Here are the events I'm attending: </p>
 
     <table class="table table-bordered">
@@ -69,6 +69,7 @@ $(document).ready(() => {
             <td>${event.owner}</td>
             <td>${event.eventDate}</td>
             <td>${event.location}</td>
+            <td>${event.price}</td>
             </tr>
         </tbody>
     </table>

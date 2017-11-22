@@ -10,46 +10,46 @@ $(document).ready(() => {
         Event.forEach((event) => {
 
             const eventHtml = ` <!--Tegnet her gør, at man bare kan skrive det som almindelig tekst, og ikke skrive " + + ". -->
-        <div class="col-lg-4 event-container">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">${event.eventName}</h3>
+  
+ <div class="container">
+
+    <table class="table table-bordered">
+       
+       <thread>
+           <tr>
+              <th>Name</th>
+              <th>Description</th>
+              <th>Owner</th> 
+              <th>Date</th>
+              <th>Location</th> 
+              <th>Price</th> 
+           </tr>     
+        </thread>
+
+        <tbody>
+            <tr>
+            <td>${event.eventName}</td>
+            <td>${event.description}</td>
+            <td>${event.owner}</td>
+            <td>${event.eventDate}</td>
+            <td>${event.location}</td>
+            <td>${event.price}</td>
+            <div class="col-lg-8 text-right">
+                <button class="btn btn-success addToEvent-button" data-event-id="${event.id}">Add to attending events</button>
                 </div>
-                <div class="panel-body">
-                    <div class="col-lg-8">
-                      <dl>
-                        <dt>Description</dt>
-                        <dd>${event.description}</dd>
-                        <dt>Owner</dt>
-                        <dd>${event.owner}</dd>
-                        <dt>Date</dt>
-                        <dd>${event.eventDate}</dd>
-                        <dt>Location</dt>
-                        <dd>${event.location}</dd>
-                      </dl>
-                    </div>
-                </div>
-                <div class="panel-footer">
-                    <div class="row">
-                        <div class="col-lg-4 price-label">
-                            <p>Kr. <span class="price-amount">${event.price}</span></p>
-                        </div>
-                        <div class="col-lg-8 text-right">
-                            <button class="btn btn-success purchase-button" data-book-id="${event.id}">Add to attending events</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>`;
+            </tr>
+        </tbody>
+    </table>
+</div> `;
 
             $EventList.append(eventHtml);
 
         });
 
-        $(".purchase-button").click((function () {
-            $("#purchase-modal").modal("toggle");
-            const idEvent = $(this).data("Event-id");
-            const event = event.find((event) => event.id === idEvent);
+        $(".addToEvent-button").click((function () {
+            $("#addToEvent-modal").modal("toggle");
+            const eventId = $(this).data("Event-id");
+            const event = event.find((Event) => event.id === eventId);
             SDK.Event.joinEvent(Event);
 
         }));
@@ -58,16 +58,13 @@ $(document).ready(() => {
     });
 
 
-    $("#purchase-modal").on("shown.bs.modal", () => {
+    $("#addToEvent-modal").on("shown.bs.modal", () => {
         const eventBasket = SDK.Storage.load("eventBasket");
         const $modalTbody = $("#modal-tbody");
         eventBasket.forEach((entry) => {
             $modalTbody.append(`
         <tr>
-            <td>
-                <img src="${entry.event.imgUrl}" height="60"/>
-            </td>
-            <td>${entry.event.title}</td>
+            <td>${entry.event.eventName}</td>
             <td>${entry.count}</td>
             <td>kr. ${entry.event.price}</td>
             <td>kr. 0</td>
