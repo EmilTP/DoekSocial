@@ -2,15 +2,15 @@ const SDK = {
     serverURL: "http://localhost:8080/api",
     request: (options, cb) => { //Vigtigste funktioner, der laver en AJAX request. Kan sende et request, asynkront.
 
-        /* let headers = {};
+        /*let headers = {};
          if (options.headers) {
              Object.keys(options.headers).forEach((h) => {
                  headers[h] = (typeof options.headers[h] === 'object') ? JSON.stringify(options.headers[h]) : options.headers[h];
              });
-         }*/
-
+         }
+*/
         let token = {
-            "authorization": localStorage.getItem("token")
+            "Authorization": SDK.Storage.load("token")
         };
 
         $.ajax({
@@ -74,7 +74,7 @@ const SDK = {
                     return cb(err);
                 }
 
-               SDK.Storage.persist("token", data);
+                SDK.Storage.persist("token", data);
 
                 cb(null, data);
 
@@ -103,7 +103,7 @@ const SDK = {
             $("#nav-container").load("navbar.html", () => {
 
                 const currentStudent = SDK.Student.current();
-                console.log(currentStudent);
+                // console.log(currentStudent);
 
                 if (currentStudent) {
                     $(".navbar-right").html(`
@@ -179,7 +179,7 @@ const SDK = {
             }, cb);
         },
 
-        getEvents: (cb) => {
+        getEvents: (cb, events) => {
 
             SDK.request({
                 method: "GET",
@@ -190,6 +190,7 @@ const SDK = {
                     }
                 }
             }, cb);
+
         },
 
         joinEvent: (event) => {

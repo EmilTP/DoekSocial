@@ -5,8 +5,6 @@ $(document).ready(() => {
 
     SDK.Event.getEvents((cb, Event) => {
 
-        console.log(Event);
-
         Event = JSON.parse(Event);
 
         Event.forEach((event) => {

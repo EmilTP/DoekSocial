@@ -18,13 +18,13 @@ $(document).ready(() => {
                     <div class="col-lg-8">
                       <dl>
                         <dt>Id</dt>
-                        <dd>${student.idStudent}</dd>
+                        <dd>${Student.idStudent}</dd>
                         <dt>First Name</dt>
-                        <dd>${student.firstName}</dd>
+                        <dd>${Student.firstName}</dd>
                         <dt>Last Name</dt>
-                        <dd>${student.lastName}</dd>
+                        <dd>${Student.lastName}</dd>
                         <dt>Email</dt>
-                        <dd>${student.email}</dd>
+                        <dd>${Student.email}</dd>
                       </dl>
                     </div>
                 </div>
