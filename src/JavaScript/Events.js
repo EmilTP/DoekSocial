@@ -65,6 +65,10 @@ $(document).ready(() => {
             $modalTbody.append(`
         <tr>
             <td>${entry.event.eventName}</td>
+            <td>${entry.event.description}</td>
+            <td>${entry.event.owner}</td>
+            <td>${entry.event.eventDate}</td>
+            <td>${entry.event.location}</td>
             <td>${entry.count}</td>
             <td>kr. ${entry.event.price}</td>
             <td>kr. 0</td>

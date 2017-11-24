@@ -98,6 +98,7 @@ const SDK = {
                 },
                 cb);
         },
+        
 
         loadNavbar: (cb) => {
             $("#nav-container").load("navbar.html", () => {
