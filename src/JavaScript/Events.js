@@ -3,6 +3,12 @@ $(document).ready(() => {
     SDK.Student.loadNavbar();
     const $EventList = $("#event-list");
 
+    SDK.Event.getEvents((cb, Event) => {
+
+        Event = JSON.parse(Event);
+
+        Event.forEach((event) => {
+
             const eventHtml = ` <!--Tegnet her gør, at man bare kan skrive det som almindelig tekst, og ikke skrive " + + ". -->
   
  <div class="container">
@@ -29,6 +35,7 @@ $(document).ready(() => {
             <td>${event.location}</td>
             <td>${event.price}</td>
             <td><div class="col-lg-8 text-right">
+            <a href="MyAttendingEvents.html">
             <button class="btn btn-success addToEvent-button" data-event-id="${event.id}">Add to attending events</button></div>
             </td>   
             </tr>
@@ -40,38 +47,15 @@ $(document).ready(() => {
 
         });
 
-        $(".addToEvent-button").click((function () {
+        $(".addToEvent-button").click(() => {
             $("#addToEvent-modal").modal("toggle");
             const eventId = $(this).data("Event-id");
-            const event = event.find((Event) => event.id === eventId);
+            const event = Event.find((Event) => event.id === eventId);
+
             SDK.Event.joinEvent(Event);
 
-        }));
-
-
-    });
-
-
-    $("#addToEvent-modal").on("shown.bs.modal", () => {
-        const eventBasket = SDK.Storage.load("eventBasket");
-        const $modalTbody = $("#modal-tbody");
-        eventBasket.forEach((entry) => {
-            $modalTbody.append(`
-        <tr>
-            <td>${entry.event.eventName}</td>
-            <td>${entry.event.description}</td>
-            <td>${entry.event.owner}</td>
-            <td>${entry.event.eventDate}</td>
-            <td>${entry.event.location}</td>
-            <td>${entry.count}</td>
-            <td>kr. ${entry.event.price}</td>
-            <td>kr. 0</td>
-        </tr>
-      `);
         });
 
-
     });
-
 
 });

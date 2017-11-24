@@ -134,9 +134,7 @@ const SDK = {
             SDK.request({
                 method: "GET",
                 url: "/students/" + SDK.Student.current().id + "/events",
-                headers: {
-                    authorization: SDK.Storage.load("token")
-                }
+                headers: {authorization: SDK.Storage.load("token")}
             }, cb);
         },
 
@@ -174,10 +172,10 @@ const SDK = {
         deleteEvent: (data, cb) => {
             SDK.request({
                 method: "PUT",
-                url: "/events" + SDK.Event.currentEvent().id + "/delete-event",
+                url: "/events" + SDK.Event.currentEvent() + "/delete-event",
                 data: data,
-                headers: {authorization: SDK.Storage.load("idEvent")}
-            }, cb);
+                headers: {authorization: SDK.Storage.load("event")}
+            }, cb, data);
         },
 
         updateEvent: (data, cb) => {
