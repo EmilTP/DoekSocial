@@ -3,12 +3,6 @@ $(document).ready(() => {
     SDK.Student.loadNavbar();
     const $EventList = $("#event-list");
 
-    SDK.Event.getEvents((cb, Event) => {
-
-        Event = JSON.parse(Event);
-
-        Event.forEach((event) => {
-
             const eventHtml = ` <!--Tegnet her gør, at man bare kan skrive det som almindelig tekst, og ikke skrive " + + ". -->
   
  <div class="container">
@@ -34,9 +28,9 @@ $(document).ready(() => {
             <td>${event.eventDate}</td>
             <td>${event.location}</td>
             <td>${event.price}</td>
-            <div class="col-lg-8 text-right">
-                <button class="btn btn-success addToEvent-button" data-event-id="${event.id}">Add to attending events</button>
-                </div>
+            <td><div class="col-lg-8 text-right">
+            <button class="btn btn-success addToEvent-button" data-event-id="${event.id}">Add to attending events</button></div>
+            </td>   
             </tr>
         </tbody>
     </table>

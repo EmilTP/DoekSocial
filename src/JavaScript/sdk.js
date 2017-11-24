@@ -98,7 +98,16 @@ const SDK = {
                 },
                 cb);
         },
-        
+
+        getMyEvents: (cb, events) => {
+            SDK.request({
+                    method: "GET",
+                    url: "/events/myEvents",
+                    headers: {authorization: SDK.Storage.load("token")}
+                },
+                cb);
+        },
+
 
         loadNavbar: (cb) => {
             $("#nav-container").load("navbar.html", () => {

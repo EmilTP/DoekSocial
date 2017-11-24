@@ -1,17 +1,19 @@
 $(document).ready(() => {
 
     SDK.Student.loadNavbar();
-    const $myEvents = $("#my-events");
+    const $AttendingEvents = $("#attending-events");
 
-    SDK.Student.getMyEvents((cb, Event) => {
 
-        Event = JSON.parse(Event);
+    SDK.Student.getAttendingEvents((err, Student) => {
 
-        Event.forEach((event) => {
+        Student = JSON.parse(Student);
 
-            const myEventHtml = ` <!--Tegnet her gør, at man bare kan skrive det som almindelig tekst, og ikke skrive " + + ". -->
+        Student.forEach((student) => {
+
+            const eventHtml = ` <!--Tegnet her gør, at man bare kan skrive det som almindelig tekst, og ikke skrive " + + ". -->
  
 <div class="container">
+<p>Here are the events I'm attending: </p>
 
     <table class="table table-bordered">
        
@@ -32,15 +34,14 @@ $(document).ready(() => {
             <td>${event.eventDate}</td>
             <td>${event.location}</td>
             <td>${event.price}</td>
-            <td><div class="col-lg-8 text-right">
-            <button class="btn btn-success delete-button" data-event-id="${event.id}">Delete event</button></div>
-            </td>
             </tr>
         </tbody>
     </table>
 </div> `;
-            $myEvents.append(myEventHtml);
+            $AttendingEvents.append(eventHtml);
         });
+
     });
 });
+
 

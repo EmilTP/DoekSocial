@@ -10,6 +10,10 @@ $(document).ready(() => {
         const eventPrice = $("#event-price").val();
         const eventDescription = $("#event-description").val();
 
+        if (eventName === "" || eventLocation === "" || eventDate === "" || eventPrice === "" || eventDescription === "") {
+            window.alert("All information must be filled out!")
+        }
+
         SDK.Event.createEvent(eventName, eventLocation, eventDate, eventPrice, eventDescription, (err, data) => {
             if (err && err.xhr.status === 400) {
                 $(".margin-bottom").addClass("Error");
@@ -18,7 +22,7 @@ $(document).ready(() => {
                 console.log(err)
             } else {
                 window.alert("Event created!");
-                window.location.href = "MyProfile.html";
+                window.location.href = "MyEvents.html";
             }
         });
 
