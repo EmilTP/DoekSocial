@@ -4,21 +4,22 @@ $(document).ready(() => {
     const $myEvents = $("#my-events");
     const $noEvents = $("#nothing-in-my-events");
 
-
+    $noEvents.hide();
 
     SDK.Student.getMyEvents((cb, Event) => {
 
-        if (Event.length === 0) {
-            $noEvents.show();
-        }
 
         Event = JSON.parse(Event);
 
 
+        if (Event.length === 0) {
+
+            $noEvents.show();
+
+        }
+        console.log(Event.length);
 
         Event.forEach((event) => {
-
-
 
 
             const myEventHtml = ` <!--Tegnet her gør, at man bare kan skrive det som almindelig tekst, og ikke skrive " + + ". -->
@@ -71,7 +72,6 @@ $(document).ready(() => {
             SDK.Event.updateEvent(Event);
 
         });
-
     });
 });
 
