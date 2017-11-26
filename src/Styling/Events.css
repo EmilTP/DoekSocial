@@ -74,3 +74,6 @@ p1 {
     width: auto;
 
 }
+.modal-dialog{
+    background-color: white;
+}

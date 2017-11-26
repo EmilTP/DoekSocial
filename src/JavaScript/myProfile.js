@@ -2,7 +2,6 @@ $(document).ready(() => {
 
     SDK.Student.loadNavbar();
     const $myProfile = $("#my-profile");
-    const $AttendingEvents = $("#attending-events");
 
     SDK.Student.getProfile((cb, Student) => {
 

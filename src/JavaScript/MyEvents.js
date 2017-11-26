@@ -4,17 +4,16 @@ $(document).ready(() => {
     const $myEvents = $("#my-events");
     const $noEvents = $("#nothing-in-my-events");
 
-    if ($myEvents === null) {
+    if (Event.length === 0) {
         $noEvents.show();
     }
-
-
 
     SDK.Student.getMyEvents((cb, Event) => {
 
         Event = JSON.parse(Event);
 
         Event.forEach((event) => {
+
 
             const myEventHtml = ` <!--Tegnet her gør, at man bare kan skrive det som almindelig tekst, og ikke skrive " + + ". -->
  

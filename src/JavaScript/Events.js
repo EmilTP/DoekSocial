@@ -37,7 +37,8 @@ $(document).ready(() => {
             <td><div class="col-lg-8 text-right">
             <a href="MyAttendingEvents.html">
             <button class="btn btn-success addToEvent-button" data-event-id="${event.id}">Add to attending events</button></div>
-            </td>   
+            <td><div class="col-lg-8 text-right">
+            <button class="btn btn-success attendingStudents-button" data-event-id="${event.id}">See attending students</button></div>
             </tr>
         </tbody>
     </table>
@@ -48,7 +49,6 @@ $(document).ready(() => {
         });
 
         $(".addToEvent-button").click(() => {
-            $("#addToEvent-modal").modal("toggle");
             const eventId = $(this).data("Event-id");
             const event = Event.find((Event) => event.id === eventId);
 
@@ -56,6 +56,26 @@ $(document).ready(() => {
 
         });
 
-    });
+        $(".attendingStudents-button").click(() => {
+            $("#attend-modal").modal("toggle");
 
+        });
+
+        $("#attend-modal").on("shown.es.modal", () => {
+            const attendingStudents = SDK.Storage.load("token");
+            const $modalBody = $("#modal-body");
+
+            attendingStudents.forEach((entry) => {
+                $modalBody.append(`
+            <tr>
+            <td>${entry.Student.idStudent}</td>
+            <td>${entry.Student.firstName}</td>
+            <td>${entry.Student.lastName}</td>
+            <td>${entry.Student.email}</td>
+            </tr>
+      `)
+
+            });
+        });
+    });
 });
