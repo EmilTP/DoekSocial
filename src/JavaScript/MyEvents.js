@@ -8,13 +8,17 @@ $(document).ready(() => {
 
     SDK.Student.getMyEvents((cb, Event) => {
 
+        if (Event.length === 0) {
+            $noEvents.show();
+        }
+
         Event = JSON.parse(Event);
+
+
 
         Event.forEach((event) => {
 
-            if (Event.length === 0) {
-                $noEvents.show();
-            }
+
 
 
             const myEventHtml = ` <!--Tegnet her gør, at man bare kan skrive det som almindelig tekst, og ikke skrive " + + ". -->
