@@ -19,7 +19,9 @@ $("#update-button").click(() => {
             console.log("Something went wrong");
             window.alert("Was not able to update the event - Try again")
         } else {
+            window.alert("Your event was updated");
             window.location.href = "MyEvents.html";
+
         }
 
 

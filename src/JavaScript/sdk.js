@@ -142,13 +142,27 @@ const SDK = {
             }, cb);
         },
 
-        logout: () => {
-            SDK.Storage.remove("token");
-            SDK.Storage.remove("IdStudent");
-            SDK.Storage.remove("Student");
-            SDK.Storage.remove("currentStudent");
-            /*localStorage.removeItem("token");*/
+        logout: (cb) => {
+
+            SDK.request({
+                method: "POST",
+                url: "/Students/logout",
+            }, (err, data) => {
+                if (err) {
+                    return cb(err);
+                }
+                cb(null, data)
+            });
+
             window.location.href = "Home.html";
+
+
+            /* SDK.Storage.remove("token");
+             SDK.Storage.remove("IdStudent");
+             SDK.Storage.remove("Student");
+             SDK.Storage.remove("currentStudent");
+             /!*localStorage.removeItem("token");*!/
+             window.location.href = "Home.html";*/
         }
     },
 
@@ -196,7 +210,7 @@ const SDK = {
                     location: location,
                     eventDate: eventDate,
                     price: price,
-                    description: description,
+                    description: description
                 },
                 method: "PUT",
                 url: "/events/" + idEvent + "/update-event",
