@@ -189,13 +189,25 @@ const SDK = {
             }, cb);
         },
 
-        updateEvent: (data, cb) => {
+        updateEvent: (eventName, location, eventDate, price, description, idEvent, cb) => {
             SDK.request({
+                data: {
+                    eventName: eventName,
+                    location: location,
+                    eventDate: eventDate,
+                    price: price,
+                    description: description,
+                },
                 method: "PUT",
-                url: "/events/" + SDK.Event.currentEvent() + "/update-event",
-                data: data,
-                headers: {authorization: SDK.Storage.load("token")}
-            }, cb);
+                url: "/events/" + idEvent + "/update-event",
+
+            }, (err, data) => {
+                if (err) return cb(err);
+
+                SDK.Storage.persist("crypted", data);
+
+                cb(null, data);
+            });
         },
 
         getEvents: (cb, events) => {
@@ -232,15 +244,13 @@ const SDK = {
 
         },
 
-        getAttendingStudents: (cb) => {
+        getAttendingStudents: (idEvent, cb) => {
             SDK.request({
                 method: "GET",
-                url: "/events/" + SDK.Storage.load("currentStudent").idStudent + "/students",
-                headers: {
-                    authorization: SDK.Storage.load("token")
-                }
+                url: "/events/" + idEvent + "/students",
             }, cb);
         },
+
     },
 
     Storage: {
@@ -259,6 +269,14 @@ const SDK = {
         },
         remove: (key) => {
             window.localStorage.removeItem(SDK.Storage.prefix + key);
+        }
+    },
+
+//Denne metode er lavet i samarbejde med Iben og Jesper. Ibens repository: https://github.com/Ibenfoldager/STFUClient/commit/98e93ad94c02d4980cf0e9512677d1e470565efc
+    Url: {
+        getParameterByName: (name) => {
+            var match = RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
+            return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
         }
     }
 };

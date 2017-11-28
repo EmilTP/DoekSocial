@@ -19,6 +19,7 @@ $(document).ready(() => {
        
        <thread>
            <tr>
+              <th>Name</th>
               <th>Description</th>
               <th>Owner</th> 
               <th>Date</th>
@@ -29,6 +30,7 @@ $(document).ready(() => {
 
         <tbody>
             <tr>
+            <td>${event.eventName}</td>
             <td>${event.description}</td>
             <td>${event.owner}</td>
             <td>${event.eventDate}</td>

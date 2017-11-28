@@ -46,8 +46,9 @@ $(document).ready(() => {
             <td>${event.price}</td>
             <td><button class="btn btn-success delete-button" data-event-id-delete="${event.idEvent}">Delete event</button>
             </td>
-            <td><button class="btn btn-success update-button" data-event-id-update="${event.idEvent}">Update event</button>
-            </td>
+            <td> <a href="updateEvent.html?eventId=${event.idEvent}"
+            <button class="btn btn-success update-button">Update event</button>
+            </a></td>
             </tr>
         </tbody>
     </table>
@@ -71,15 +72,6 @@ $(document).ready(() => {
                 } else {
                     window.location.href = "MyEvents.html";
                 }
-
-
-            });
-
-            $(".update-button").click(() => {
-                const eventId = $(this).data("Event-id-update");
-                const event = event.find((Event) => event.id === eventId);
-                SDK.Event.updateEvent(Event);
-
             });
         });
     });

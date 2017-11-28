@@ -2,6 +2,7 @@ $(document).ready(() => {
 
     SDK.Student.loadNavbar();
     const $EventList = $("#event-list");
+    const $attendingStudents = $("#attendingStudents");
 
     SDK.Event.getEvents((cb, Event) => {
 
@@ -57,7 +58,7 @@ $(document).ready(() => {
                     console.log("Something went wrong");
                     window.alert("Was not able to delete the event - Try again")
                 } else {
-                    window.location.href = "MyEvents.html";
+                    window.location.href = "MyAttendingEvents.html";
                 }
 
 
@@ -67,25 +68,28 @@ $(document).ready(() => {
         });
 
         $(".attendingStudents-button").click(function () {
-            $("#attendingStudents-modal").modal("toggle");
+            var idEvent = $(this).data("event-id");
 
-        });
+            console.log(idEvent);
 
-        $("#attendingStudents-modal").on("shown.es.modal", () => {
-            const attendingStudents = SDK.Storage.load("token");
-            const $modalBody = $("#modal-body");
+            SDK.Event.getAttendingStudents(idEvent, (cb, students) => {
+                if (students) {
+                    students = JSON.parse(students);
+                    students.forEach((student) => {
+                        console.log(student.firstName);
 
-            attendingStudents.forEach((entry) => {
-                $modalBody.append(`
-            <tr>
-            <td>${entry.Student.idStudent}</td>
-            <td>${entry.Student.firstName}</td>
-            <td>${entry.Student.lastName}</td>
-            <td>${entry.Student.email}</td>
-            </tr>
-      `)
-
+                        const attendingStudentsHtml = `
+                            <td>${student.firstName} ${student.lastName} ${student.email}</td>
+                        `;
+                            
+                            $attendingStudents.append(attendingStudentsHtml)
+                    });
+                } else { $("#attendingStudents").html("Something happened, try again");
+                }
             });
         });
+    });
+    $("#closeModal").click(function () {
+        $("#attendingStudents").html("");
     });
 });

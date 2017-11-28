@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <link rel="stylesheet" href="../Styling/Login.css">
+    <link rel="stylesheet" href="../lib/CSS/bootstrap.css">
+
+    <meta charset="UTF-8">
+    <title>Update Event</title>
+</head>
+<body>
+
+
+<div class="login">
+    <div class="title">
+        <h1>DØK-Social</h1>
+        <p>Update your DØK event</p>
+        <a class="btn" href="MyEvents.html">Back to my events</a>
+    </div>
+</div>
+
+<div class="login">
+    <div class="margin-bottom">
+        <input type="text" class="margin-bottom" id="event-name" placeholder="Event name">
+    </div>
+
+    <div class="margin-bottom">
+        <input type="text" class="margin-bottom" id="event-location" placeholder="Event location">
+    </div>
+
+    <div class="margin-bottom">
+        <input type="text" class="margin-bottom" id="event-date" placeholder="Event date (dd/mm/yy)">
+    </div>
+
+    <div class="margin-bottom">
+        <input type="text" class="margin-bottom" id="event-price" placeholder="Event price">
+    </div>
+
+    <div class="form-check">
+        <textarea type="text" class="margin-bottom" id="event-description" rows="3"></textarea>
+    </div>
+
+    <br>
+
+    <br>
+
+    <button href="MyEvents.html" style="margin-bottom: 40px" class="btn" id="update-button">Update Event</button>
+
+
+    <footer>Made by Emil Tønder-Prien</footer>
+
+</div>
+
+<script src="../lib/JS/jquery-3.2.1.js"></script>
+<script src="../lib/JS/bootstrap.js"></script>
+<script src="../JavaScript/sdk.js"></script>
+<script src="../JavaScript/updateEvent.js"></script>
+<script>
+    SDK.Student.loadNavbar();
+</script>
+
+
+</body>
+</html>
