@@ -55,9 +55,9 @@ $(document).ready(() => {
                 }
                 else if (err) {
                     console.log("Something went wrong");
-                    window.alert("Was not able to join the event - Try again")
+                    window.alert("Was not able to delete the event - Try again")
                 } else {
-                    window.location.href = "MyAttendingEvents.html";
+                    window.location.href = "MyEvents.html";
                 }
 
 
@@ -67,7 +67,7 @@ $(document).ready(() => {
         });
 
         $(".attendingStudents-button").click(function () {
-            $("#attend-modal").modal("toggle");
+            $("#attendingStudents-modal").modal("toggle");
 
         });
 

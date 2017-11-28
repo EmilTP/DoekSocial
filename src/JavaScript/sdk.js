@@ -146,6 +146,7 @@ const SDK = {
             SDK.Storage.remove("token");
             SDK.Storage.remove("IdStudent");
             SDK.Storage.remove("Student");
+            SDK.Storage.remove("currentStudent");
             /*localStorage.removeItem("token");*/
             window.location.href = "Home.html";
         }
@@ -173,13 +174,19 @@ const SDK = {
             }, cb);
         },
 
-        deleteEvent: (data, cb) => {
+        deleteEvent: (idEvent, eventName, location, price, eventDate, description, cb) => {
             SDK.request({
+                data: {
+                    idEvent: idEvent,
+                    eventName: eventName,
+                    location: location,
+                    price: price,
+                    eventDate: eventDate,
+                    description: description
+                },
                 method: "PUT",
-                url: "/events/" + SDK.Event.currentEvent() + "/delete-event",
-                data: data,
-                headers: {authorization: SDK.Storage.load("token")}
-            }, cb, data);
+                url: "/events/" + idEvent + "/delete-event",
+            }, cb);
         },
 
         updateEvent: (data, cb) => {
@@ -228,7 +235,7 @@ const SDK = {
         getAttendingStudents: (cb) => {
             SDK.request({
                 method: "GET",
-                url: "/events/" + SDK.Event.currentEvent().id + "/students",
+                url: "/events/" + SDK.Storage.load("currentStudent").idStudent + "/students",
                 headers: {
                     authorization: SDK.Storage.load("token")
                 }
