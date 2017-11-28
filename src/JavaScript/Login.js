@@ -23,7 +23,7 @@ $(document).ready(() => {
                 SDK.Student.getProfile((err, _data) => {
                     if(err) console.log('error', err);
 
-                    console.log(err, _data);
+                    //console.log(err, _data);
                     SDK.Storage.persist("currentStudent", _data);
                     window.location.href = "Home.html";
                 });

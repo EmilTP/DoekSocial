@@ -112,6 +112,7 @@ const SDK = {
         loadNavbar: (cb) => {
             $("#nav-container").load("navbar.html", () => {
 
+
                 const currentStudent = SDK.Student.current();
                 // console.log(currentStudent);
 
@@ -124,7 +125,17 @@ const SDK = {
             <li><a href="Login.html">Login <span class="sr-only">(current)</span></a></li>
           `);
                 }
-                $("#logout-link").click(() => SDK.Student.logout());
+                $("#logout-link").click(() => {
+                    SDK.Student.logout((err, data) => {
+                        if (err && err.xhr.status === 401) {
+                            $(".margin-bottom").addClass("has-error");
+                        } else {
+                            localStorage.removeItem("token");
+                            localStorage.removeItem("idStudent");
+                            window.location.href = "Login.html";
+                        }
+                    })
+                });
                 cb && cb();
 
             })
@@ -146,16 +157,13 @@ const SDK = {
 
             SDK.request({
                 method: "POST",
-                url: "/Students/logout",
+                url: "/students/logout",
             }, (err, data) => {
                 if (err) {
                     return cb(err);
                 }
                 cb(null, data)
             });
-
-            window.location.href = "Home.html";
-
 
             /* SDK.Storage.remove("token");
              SDK.Storage.remove("IdStudent");
