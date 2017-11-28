@@ -2,7 +2,7 @@ $(document).ready(() => {
 
     SDK.Student.loadNavbar();
     const $EventList = $("#event-list");
-    const $attendingStudents = $("#attendingStudents");
+    const $attendingStudentButton = $("#attendingStudentButton");
 
     SDK.Event.getEvents((cb, Event) => {
 
@@ -36,7 +36,7 @@ $(document).ready(() => {
             <td>${event.location}</td>
             <td>${event.price}</td>
             <td><button class="btn btn-success addToEvent-button" data-event-id="${event.idEvent}">Add to attending events</button></td>
-            <td><button class="btn btn-success attendingStudents-button" data-event-id2="${event.idEvent}">See attending students</button></td>
+            <td><button class="btn btn-success attendingStudentButton" data-event-id="${event.idEvent}" data-toggle="modal" data-target="#attendingStudents-modal">See attending students</button></td>
             </tr>
         </tbody>
     </table>
@@ -67,7 +67,7 @@ $(document).ready(() => {
 
         });
 
-        $(".attendingStudents-button").click(function () {
+        $(".attendingStudentButton").click(function () {
             var idEvent = $(this).data("event-id");
 
             console.log(idEvent);
@@ -81,15 +81,16 @@ $(document).ready(() => {
                         const attendingStudentsHtml = `
                             <td>${student.firstName} ${student.lastName} ${student.email}</td>
                         `;
-                            
-                            $attendingStudents.append(attendingStudentsHtml)
+
+                            $attendingStudentButton.append(attendingStudentsHtml)
                     });
-                } else { $("#attendingStudents").html("Something happened, try again");
+                } else {
+                    $("#attendingStudentButton").html("Something happened, try again");
                 }
             });
         });
     });
     $("#closeModal").click(function () {
-        $("#attendingStudents").html("");
+        $("#attendingStudentButton").html("");
     });
 });
