@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="deea2dd3-54c3-4984-81a8-39c4637665be" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/JavaScript/updateEvent.js" afterPath="$PROJECT_DIR$/src/JavaScript/updateEvent.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/JavaScript/sdk.js" afterPath="$PROJECT_DIR$/src/JavaScript/sdk.js" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -26,11 +26,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Login.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Login.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/HTML/Login.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="16" column="57" lean-forward="false" selection-start-line="16" selection-start-column="57" selection-end-line="16" selection-end-column="57" />
+            <state relative-caret-position="525">
+              <caret line="35" column="7" lean-forward="true" selection-start-line="35" selection-start-column="7" selection-end-line="35" selection-end-column="7" />
               <folding />
             </state>
           </provider>
@@ -49,8 +49,8 @@
       <file leaf-file-name="sdk.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/JavaScript/sdk.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1108">
-              <caret line="125" column="13" lean-forward="true" selection-start-line="125" selection-start-column="13" selection-end-line="125" selection-end-column="13" />
+            <state relative-caret-position="545">
+              <caret line="136" column="19" lean-forward="true" selection-start-line="136" selection-start-column="19" selection-end-line="136" selection-end-column="19" />
               <folding />
             </state>
           </provider>
@@ -66,10 +66,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Events.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Events.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/HTML/Events.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="398">
+            <state relative-caret-position="429">
               <caret line="44" column="64" lean-forward="false" selection-start-line="44" selection-start-column="64" selection-end-line="44" selection-end-column="64" />
               <folding />
             </state>
@@ -198,8 +198,8 @@
         <option value="$PROJECT_DIR$/src/HTML/Events.html" />
         <option value="$PROJECT_DIR$/src/HTML/updateEvent.html" />
         <option value="$PROJECT_DIR$/src/JavaScript/Login.js" />
-        <option value="$PROJECT_DIR$/src/JavaScript/sdk.js" />
         <option value="$PROJECT_DIR$/src/JavaScript/updateEvent.js" />
+        <option value="$PROJECT_DIR$/src/JavaScript/sdk.js" />
       </list>
     </option>
   </component>
@@ -429,12 +429,12 @@
       <workItem from="1509968070899" duration="73668000" />
       <workItem from="1510854354571" duration="1314000" />
       <workItem from="1510856141448" duration="5200000" />
-      <workItem from="1510912789522" duration="114466000" />
+      <workItem from="1510912789522" duration="115433000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="244303000" />
+    <option name="totallyTimeSpent" value="245270000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1440" height="829" extended-state="0" />
@@ -447,7 +447,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32891247" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32496697" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32496697" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39920425" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -742,22 +742,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/JavaScript/Login.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="33" column="0" lean-forward="true" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/HTML/Login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="57" lean-forward="false" selection-start-line="16" selection-start-column="57" selection-end-line="16" selection-end-column="57" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/HTML/updateEvent.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="466">
@@ -765,6 +749,14 @@
           <folding>
             <element signature="n#style#0;n#button#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/HTML/MyEvents.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="699">
+          <caret line="50" column="16" lean-forward="false" selection-start-line="50" selection-start-column="16" selection-end-line="50" selection-end-column="16" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -794,18 +786,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/HTML/MyEvents.html">
+    <entry file="file://$PROJECT_DIR$/src/HTML/Events.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="699">
-          <caret line="50" column="16" lean-forward="false" selection-start-line="50" selection-start-column="16" selection-end-line="50" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/JavaScript/sdk.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1108">
-          <caret line="125" column="13" lean-forward="true" selection-start-line="125" selection-start-column="13" selection-end-line="125" selection-end-column="13" />
+        <state relative-caret-position="429">
+          <caret line="44" column="64" lean-forward="false" selection-start-line="44" selection-start-column="64" selection-end-line="44" selection-end-column="64" />
           <folding />
         </state>
       </provider>
@@ -818,10 +802,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/HTML/Events.html">
+    <entry file="file://$PROJECT_DIR$/src/JavaScript/Login.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="398">
-          <caret line="44" column="64" lean-forward="false" selection-start-line="44" selection-start-column="64" selection-end-line="44" selection-end-column="64" />
+        <state relative-caret-position="495">
+          <caret line="33" column="0" lean-forward="true" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/JavaScript/sdk.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="545">
+          <caret line="136" column="19" lean-forward="true" selection-start-line="136" selection-start-column="19" selection-end-line="136" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/HTML/Login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="525">
+          <caret line="35" column="7" lean-forward="true" selection-start-line="35" selection-start-column="7" selection-end-line="35" selection-end-column="7" />
           <folding />
         </state>
       </provider>

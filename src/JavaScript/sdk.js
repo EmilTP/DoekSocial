@@ -118,7 +118,7 @@ const SDK = {
 
                 if (currentStudent) {
                     $(".navbar-right").html(`
-            <li><a href="Home.html" id="logout-link">Logout</a></li>
+            <li><a href="Login.html" id="logout-link">Logout</a></li>
           `);
                 } else {
                     $(".navbar-right").html(`
@@ -132,7 +132,6 @@ const SDK = {
                         } else {
                             localStorage.removeItem("token");
                             localStorage.removeItem("idStudent");
-                            window.location.href = "Login.html";
                         }
                     })
                 });
@@ -164,13 +163,6 @@ const SDK = {
                 }
                 cb(null, data)
             });
-
-            /* SDK.Storage.remove("token");
-             SDK.Storage.remove("IdStudent");
-             SDK.Storage.remove("Student");
-             SDK.Storage.remove("currentStudent");
-             /!*localStorage.removeItem("token");*!/
-             window.location.href = "Home.html";*/
         }
     },
 
