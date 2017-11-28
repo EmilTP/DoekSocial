@@ -7,7 +7,7 @@ $("#update-button").click(() => {
     const eventDate = $("#update-event-date").val();
     const eventPrice = $("#update-event-price").val();
     const eventDescription = $("#update-event-description").val();
-    const idEvent = SDK.Url.getParameterByName("idEvent");
+    const idEvent = SDK.Url.getParameterByName("eventId");
 
     SDK.Event.updateEvent(eventName, eventLocation, eventDate, eventPrice, eventDescription, idEvent, (err, cb) => {
 
