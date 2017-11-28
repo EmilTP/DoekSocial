@@ -2,11 +2,11 @@ SDK.Student.loadNavbar();
 
 $("#update-button").click(() => {
 
-    const eventName = $("#event-name").val();
-    const eventLocation = $("#event-location").val();
-    const eventDate = $("#event-date").val();
-    const eventPrice = $("#event-price").val();
-    const eventDescription = $("#event-description").val();
+    const eventName = $("#update-event-name").val();
+    const eventLocation = $("#update-event-location").val();
+    const eventDate = $("#update-event-date").val();
+    const eventPrice = $("#update-event-price").val();
+    const eventDescription = $("#update-event-description").val();
     const idEvent = SDK.Url.getParameterByName("idEvent");
 
     SDK.Event.updateEvent(eventName, eventLocation, eventDate, eventPrice, eventDescription, idEvent, (err, cb) => {
