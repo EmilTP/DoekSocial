@@ -9,22 +9,22 @@ $(document).ready(() => {
 
         Event.forEach((event) => {
 
-            const eventHtml = ` <!--Tegnet her gør, at man bare kan skrive det som almindelig tekst, og ikke skrive " + + ". -->
+            let eventHtml = ` <!--Tegnet her gør, at man bare kan skrive det som almindelig tekst, og ikke skrive " + + ". -->
   
  <div class="container">
 
-    <table class="table table-bordered">
+    <table class="table">
        
-       <thread>
            <tr>
               <th>Name</th>
               <th>Description</th>
               <th>Owner</th> 
               <th>Date</th>
               <th>Location</th> 
-              <th>Price</th> 
+              <th>Price</th>
+              <th>Attend button</th>
+              <th>See attendees</th> 
            </tr>     
-        </thread>
 
         <tbody>
             <tr>
@@ -34,11 +34,8 @@ $(document).ready(() => {
             <td>${event.eventDate}</td>
             <td>${event.location}</td>
             <td>${event.price}</td>
-            <td><div class="col-lg-8 text-right">
-            <a href="MyAttendingEvents.html">
-            <button class="btn btn-success addToEvent-button" data-event-id="${event.id}">Add to attending events</button></div>
-            <td><div class="col-lg-8 text-right">
-            <button class="btn btn-success attendingStudents-button" data-event-id="${event.id}">See attending students</button></div>
+            <td><button class="btn btn-success addToEvent-button" data-event-id="${event.idEvent}">Add to attending events</button></td>
+            <td><button class="btn btn-success attendingStudents-button" data-event-id2="${event.idEvent}">See attending students</button></td>
             </tr>
         </tbody>
     </table>
@@ -48,20 +45,33 @@ $(document).ready(() => {
 
         });
 
-        $(".addToEvent-button").click(() => {
-            const eventId = $(this).data("Event-id");
-            const event = Event.find((Event) => event.id === eventId);
+        $(".addToEvent-button").click(function () {
+            const idEvent = $(this).data("event-id");
+            const event = Event.find((event) => event.idEvent === idEvent);
+            console.log(event);
+            SDK.Event.joinEvent(idEvent, event.eventName, event.location, event.price, event.eventDate, event.description, (err, data) => {
+                if (err && err.xhr.status === 401) {
+                    $(".margin-bottom").addClass("Error")
+                }
+                else if (err) {
+                    console.log("Something went wrong");
+                    window.alert("Was not able to join the event - Try again")
+                } else {
+                    window.location.href = "MyAttendingEvents.html";
+                }
 
-            SDK.Event.joinEvent(Event);
+
+            });
+
 
         });
 
-        $(".attendingStudents-button").click(() => {
+        $(".attendingStudents-button").click(function () {
             $("#attend-modal").modal("toggle");
 
         });
 
-        $("#attend-modal").on("shown.es.modal", () => {
+        $("#attendingStudents-modal").on("shown.es.modal", () => {
             const attendingStudents = SDK.Storage.load("token");
             const $modalBody = $("#modal-body");
 

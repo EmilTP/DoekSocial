@@ -133,8 +133,12 @@ const SDK = {
         getAttendingEvents: (cb) => {
             SDK.request({
                 method: "GET",
-                url: "/students/" + SDK.Student.current().id + "/events",
-                headers: {authorization: SDK.Storage.load("token")}
+                url: "/students/" + SDK.Storage.load("currentStudent").idStudent + "/events",
+                headers: {
+                    filter: {
+                        include: ["events"]
+                    }
+                }
             }, cb);
         },
 
@@ -150,7 +154,7 @@ const SDK = {
     Event: {
 
         currentEvent: () => {
-            return SDK.Storage.load("event");
+            return SDK.Storage.load("Event");
         },
 
         createEvent: (eventName, eventLocation, eventDate, eventPrice, eventDescription, cb) => {
@@ -172,18 +176,18 @@ const SDK = {
         deleteEvent: (data, cb) => {
             SDK.request({
                 method: "PUT",
-                url: "/events" + SDK.Event.currentEvent() + "/delete-event",
+                url: "/events/" + SDK.Event.currentEvent() + "/delete-event",
                 data: data,
-                headers: {authorization: SDK.Storage.load("event")}
+                headers: {authorization: SDK.Storage.load("token")}
             }, cb, data);
         },
 
         updateEvent: (data, cb) => {
             SDK.request({
                 method: "PUT",
-                url: "/events" + SDK.Event.currentEvent().id + "/update-event",
+                url: "/events/" + SDK.Event.currentEvent() + "/update-event",
                 data: data,
-                headers: {authorization: SDK.Storage.load("idEvent")}
+                headers: {authorization: SDK.Storage.load("token")}
             }, cb);
         },
 
@@ -201,30 +205,24 @@ const SDK = {
 
         },
 
-        joinEvent: (event) => {
-            let eventBasket = SDK.Storage.load("eventBasket");
+        joinEvent: (idEvent, eventName, location, price, eventDate, description, cb) => {
 
-            //Has anything been added to the basket before?
-            if (!eventBasket) {
-                return SDK.Storage.persist("eventBasket", [{
-                    count: 1,
-                    event: event
-                }]);
-            }
+            SDK.request({
+                data: {
+                    idEvent: idEvent,
+                    eventName: eventName,
+                    location: location,
+                    price: price,
+                    description: description
+                },
 
-            //Does the Event already exist?
-            let foundEvent = eventBasket.find(b => b.event.id === event.id);
-            if (foundEvent) {
-                let i = eventBasket.indexOf(foundEvent);
-                eventBasket[i].count++;
-            } else {
-                eventBasket.push({
-                    count: 1,
-                    event: event
-                });
-            }
+                method: "POST",
+                url: "/events/join"
+            }, (err, data) => {
 
-            SDK.Storage.persist("eventBasket", eventBasket);
+                cb(null, data);
+            });
+
         },
 
         getAttendingStudents: (cb) => {
@@ -236,7 +234,6 @@ const SDK = {
                 }
             }, cb);
         },
-
     },
 
     Storage: {

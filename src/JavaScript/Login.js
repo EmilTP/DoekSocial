@@ -17,11 +17,18 @@ $(document).ready(() => {
                 $(".margin-bottom").addClass("Error");
             }
             else if (err) {
-                console.log("Something went wrong " + err.xhr.status)
+                console.log("Something went wrong " + err.xhr.status);
                 window.alert("Wrong password or username!")
             } else {
+                SDK.Student.getProfile((err, _data) => {
+                    if(err) console.log('error', err);
+
+                    console.log(err, _data);
+                    SDK.Storage.persist("currentStudent", _data);
+                    window.location.href = "Home.html";
+                });
                 console.log(data);
-                window.location.href = "Home.html";
+
             }
         });
 

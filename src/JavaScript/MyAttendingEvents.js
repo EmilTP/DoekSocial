@@ -3,17 +3,17 @@ $(document).ready(() => {
     SDK.Student.loadNavbar();
     const $AttendingEvents = $("#attending-events");
 
+    SDK.Student.getAttendingEvents((cb, events) => {
 
-    SDK.Student.getAttendingEvents((err, Student) => {
+        events = JSON.parse(events);
 
-        Student = JSON.parse(Student);
+        console.log(events);
 
-        Student.forEach((student) => {
+        events.forEach((event) => {
 
-            const eventHtml = ` <!--Tegnet her gør, at man bare kan skrive det som almindelig tekst, og ikke skrive " + + ". -->
+            const attendingEventsHtml = ` <!--Tegnet her gør, at man bare kan skrive det som almindelig tekst, og ikke skrive " + + ". -->
  
 <div class="container">
-<p>Here are the events I'm attending: </p>
 
     <table class="table table-bordered">
        
@@ -38,7 +38,7 @@ $(document).ready(() => {
         </tbody>
     </table>
 </div> `;
-            $AttendingEvents.append(eventHtml);
+            $AttendingEvents.append(attendingEventsHtml);
         });
 
     });

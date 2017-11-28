@@ -17,7 +17,6 @@ $(document).ready(() => {
             $noEvents.show();
 
         }
-        console.log(Event.length);
 
         Event.forEach((event) => {
 
@@ -46,10 +45,10 @@ $(document).ready(() => {
             <td>${event.location}</td>
             <td>${event.price}</td>
             <td><div class="col-lg-8 text-right">
-            <button class="btn btn-success delete-button" data-event-id="${event.id}">Delete event</button></div>
+            <button class="btn btn-success delete-button" data-event-id="${event.idEvent}">Delete event</button></div>
             </td>
             <td><div class="col-lg-8 text-right">
-            <button class="btn btn-success update-button" data-event-id="${event.id}">Update event</button></div>
+            <button class="btn btn-success update-button" data-event-id="${event.idEvent}">Update event</button></div>
             </td>
             </tr>
         </tbody>
@@ -59,8 +58,8 @@ $(document).ready(() => {
         });
 
         $(".delete-button").click(() => {
-            const eventId = $(this).data("IdEvent");
-            const event = Event.find((event) => event.id === eventId);
+            const eventId = $(this).data("event.id");
+            const event = Event.find((event) => event.idEvent === idEvent);
             SDK.Event.deleteEvent(event);
 
 
