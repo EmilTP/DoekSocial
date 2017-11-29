@@ -70,16 +70,32 @@ $(document).ready(() => {
         $(".attendingStudentButton").click(function () {
             var idEvent = $(this).data("event-id");
 
-            console.log(idEvent);
-
             SDK.Event.getAttendingStudents(idEvent, (cb, students) => {
                 if (students) {
                     students = JSON.parse(students);
                     students.forEach((student) => {
-                        console.log(student.firstName);
 
                         const attendingStudentsHtml = `
-                            <td>${student.firstName} ${student.lastName} ${student.email}</td>
+                            <table class="table">
+       
+                           <thread>
+                               <tr>
+                                  <th>Id</th>
+                                  <th>First Name</th> 
+                                  <th>Last Name</th>
+                                  <th>Email</th> 
+                               </tr>     
+                            </thread>
+                    
+                            <tbody>
+                                <tr>
+                                <td>${student.idStudent}</td>
+                                <td>${student.firstName}</td>
+                                <td>${student.lastName}</td>
+                                <td>${student.email}</td>
+                                </tr>
+                            </tbody>
+                        </table>
                         `;
 
                             $attendingStudentButton.append(attendingStudentsHtml)

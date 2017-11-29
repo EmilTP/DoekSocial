@@ -77,13 +77,4 @@ p1 {
 .modal-dialog{
     background-color: white;
 }
-.row {
-    margin-left: auto;
-    margin-right: auto;
-    width: 80%;
-}
-.container {
-    margin-left: auto;
-    margin-right: auto;
-    width: 80%;
-}
+

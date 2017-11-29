@@ -2,10 +2,20 @@ $(document).ready(() => {
 
     SDK.Student.loadNavbar();
     const $AttendingEvents = $("#attending-events");
+    const $myAttendingEvents = $("#my-attending-events");
+    const $noAttendingEvents = $("#nothing-in-my-attending-events");
+
+    $noAttendingEvents.hide();
 
     SDK.Student.getAttendingEvents((cb, events) => {
 
         events = JSON.parse(events);
+
+        if (events.length === 0) {
+
+            $noAttendingEvents.show();
+
+        }
 
         console.log(events);
 
