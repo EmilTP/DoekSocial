@@ -22,7 +22,7 @@ $(document).ready(() => {
                 console.log(err)
             } else {
                 window.alert("Event created!");
-                window.location.href = "MyEvents.html";
+                window.location.href = "myEvents.html";
             }
         });
 

@@ -70,7 +70,7 @@ $(document).ready(() => {
                     console.log("Something went wrong");
                     window.alert("Was not able to join the event - Try again")
                 } else {
-                    window.location.href = "MyEvents.html";
+                    window.location.href = "myEvents.html";
                 }
             });
         });

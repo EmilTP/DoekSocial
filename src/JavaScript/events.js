@@ -58,7 +58,7 @@ $(document).ready(() => {
                     console.log("Something went wrong");
                     window.alert("Was not able to delete the event - Try again")
                 } else {
-                    window.location.href = "MyAttendingEvents.html";
+                    window.location.href = "myAttendingEvents.html";
                 }
 
 

@@ -25,7 +25,7 @@ $(document).ready(() => {
 
                     //console.log(err, _data);
                     SDK.Storage.persist("currentStudent", _data);
-                    window.location.href = "Home.html";
+                    window.location.href = "home.html";
                 });
                 console.log(data);
 
