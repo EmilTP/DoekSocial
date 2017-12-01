@@ -25,7 +25,7 @@ $(document).ready(() => {
  
 <div class="container">
 
-    <table class="table table-bordered">
+    <table class="table">
        
        <thread>
            <tr>

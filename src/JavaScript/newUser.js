@@ -28,7 +28,7 @@ $(document).ready(() => {
                     console.log(err)
                 } else {
                     window.alert("Succesful sign-up!");
-                    window.location.href = "home.html";
+                    window.location.href = "login.html";
                 }
             });
 
