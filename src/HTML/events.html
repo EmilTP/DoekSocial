@@ -11,12 +11,14 @@
 </head>
 <body>
 
+<!--Der er i dette dokument anvendt kode fra Bootstrap: https://getbootstrap.com/docs/3.3/
+    Der er i dette dokument anvendt kode fra J-Query: https://jquery.com-->
+
 <div class="title">
     <h1>DØK-Social</h1>
-
-
 </div>
 
+<!-- Nedenstående container indeholder divs, som refererer til innerHTML i events.js -->
 <div class="container">
 
     <div class="row" id="nav-container"></div>
@@ -25,6 +27,7 @@
         <h1>All Døk Events</h1>
     </div>
 
+    <!-- Knap til at oprette et nyt event -->
     <a class="btn" href="newEvent.html">Create new event</a>
 
     <div class="table" id="event-list">
@@ -33,6 +36,8 @@
 
 </div>
 
+<!-- Der er hentet inspiration ved nedenstående modal fra Jesper Bruun Hansens kode på Github:
+https://github.com/Distribuerede-Systemer-2017/javascript-client -->
 <div id="attendingStudents-modal" class="modal fade" role="dialog">
     <div class="modal-dialog">
 
@@ -52,10 +57,9 @@
     </div>
 </div>
 
-
-
 <footer>Made by Emil Tønder-Prien</footer>
 
+<!-- Importerer scripts her -->
 <script src="../lib/JS/jquery-3.2.1.js"></script>
 <script src="../lib/JS/bootstrap.js"></script>
 <script src="../JavaScript/sdk.js"></script>

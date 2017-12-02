@@ -12,48 +12,50 @@
 </head>
 <body>
 
+<!--Der er i dette dokument anvendt kode fra Bootstrap: https://getbootstrap.com/docs/3.3/
+    Der er i dette dokument anvendt kode fra J-Query: https://jquery.com-->
+
 <div class="title">
     <h1>DØK-Social</h1>
 </div>
 
+
+<!-- Nedenstående container indeholder divs, som refererer til innerHTML i  min myEvents.js -->
 <div class="container">
 
     <div class="row" id="nav-container"></div>
 
     <div class="row">
-        <div class="col-lg-12">
 
-            <div class="page-header">
-                <h1>My events</h1>
-                <p>Here are the events I have created: </p>
-            </div>
-
-            <div class="row" id="my-events">
-                <!--My events skulle gernes sendes ind i her. -->
-            </div>
-
+        <div class="page-header">
+            <h1>My events</h1>
+            <p>Here are the events I have created: </p>
         </div>
 
-        <div id="nothing-in-my-events">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h2>You have not created an event yet..!</h2>
-                </div>
-            </div>
+        <div class="row" id="my-events">
+            <!--My events sendes ind i her. -->
         </div>
-
-        <footer>Made by Emil Tønder-Prien</footer>
-
-        <script src="../lib/JS/jquery-3.2.1.js"></script>
-        <script src="../lib/JS/bootstrap.js"></script>
-        <script src="../JavaScript/sdk.js"></script>
-        <script src="../JavaScript/myEvents.js"></script>
-        <script>
-            SDK.Student.loadNavbar();
-        </script>
-
 
     </div>
+
+    <!-- Bruges til mit if-statement i myEvents.js -->
+    <div id="nothing-in-my-events">
+        <div class="row">
+            <h2>You have not created an event yet..!</h2>
+        </div>
+    </div>
+
+    <footer>Made by Emil Tønder-Prien</footer>
+
+    <!-- Importerer scripts -->
+    <script src="../lib/JS/jquery-3.2.1.js"></script>
+    <script src="../lib/JS/bootstrap.js"></script>
+    <script src="../JavaScript/sdk.js"></script>
+    <script src="../JavaScript/myEvents.js"></script>
+    <script>
+        SDK.Student.loadNavbar();
+    </script>
+
 </div>
 
 </body>

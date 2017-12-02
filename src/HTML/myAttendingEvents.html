@@ -10,48 +10,49 @@
 </head>
 <body>
 
+<!--Der er i dette dokument anvendt kode fra Bootstrap: https://getbootstrap.com/docs/3.3/
+    Der er i dette dokument anvendt kode fra J-Query: https://jquery.com-->
+
 <div class="title">
     <h1>DØK-Social</h1>
 </div>
 
-
+<!-- Nedenstående container indeholder divs, som refererer til innerHTML i min myAttendingEvents.js  -->
 <div class="container">
 
     <div class="row" id="nav-container"></div>
 
     <div class="row">
-        <div class="col-lg-12">
 
-            <div class="page-header">
-                <h1>My attending events</h1>
-                <p>Here is a list of the events I'm attending: </p>
-            </div>
-
-            <div class="row" id="attending-events">
-                <!--Mine events listen skulle gernes sendes ind i her. -->
-            </div>
-
-            <div id="nothing-in-my-attending-events">
-                <div class="row">
-                    <div class="col-lg-12 text-center">
-                        <h2>You are not attending any events..!</h2>
-                    </div>
-                </div>
-            </div>
-
-
+        <div class="page-header">
+            <h1>My attending events</h1>
+            <p>Here is a list of the events I'm attending: </p>
         </div>
 
-        <footer>Made by Emil Tønder-Prien</footer>
+        <div class="row" id="attending-events">
+            <!--Mine events listen sendes ind i her. -->
+        </div>
 
-        <script src="../lib/JS/jquery-3.2.1.js"></script>
-        <script src="../lib/JS/bootstrap.js"></script>
-        <script src="../JavaScript/sdk.js"></script>
-        <script src="../JavaScript/myAttendingEvents.js"></script>
-        <script>
-            SDK.Student.loadNavbar();
-        </script>
+        <!-- Dette stykke bruges til min if-statement i myAttendingEvents.js -->
+        <div id="nothing-in-my-attending-events">
+            <div class="row">
+                <h2>You are not attending any events..!</h2>
+            </div>
+        </div>
+    </div>
 
+    <footer>Made by Emil Tønder-Prien</footer>
+
+    <!-- Importerer scripts her -->
+    <script src="../lib/JS/jquery-3.2.1.js"></script>
+    <script src="../lib/JS/bootstrap.js"></script>
+    <script src="../JavaScript/sdk.js"></script>
+    <script src="../JavaScript/myAttendingEvents.js"></script>
+    <script>
+        SDK.Student.loadNavbar();
+    </script>
+
+</div>
 
 </body>
 </html>
