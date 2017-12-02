@@ -1,18 +1,18 @@
-const SDK = {
-    serverURL: "http://localhost:8080/api",
-    request: (options, cb) => { //Vigtigste funktioner, der laver en AJAX request. Kan sende et request, asynkront.
+//Dette Javascript dokument er taget udgangspunkt i Jesper Bruun Hansens kode på Github:
+// https://github.com/Distribuerede-Systemer-2017/javascript-client
 
-        /*let headers = {};
-         if (options.headers) {
-             Object.keys(options.headers).forEach((h) => {
-                 headers[h] = (typeof options.headers[h] === 'object') ? JSON.stringify(options.headers[h]) : options.headers[h];
-             });
-         }
-*/
+const SDK = {
+
+    //Serverens addresse
+    serverURL: "http://localhost:8080/api",
+
+    request: (options, cb) => { //Disse funktioner er de vigtigste i programmet. De laver et AJAX request. Kan sende et request, asynkront.
+
         let token = {
             "Authorization": SDK.Storage.load("token")
         };
 
+        //Her sætter jeg parametrene for mit AJAX-kald med serveren.
         $.ajax({
             url: SDK.serverURL + options.url,
             method: options.method,
@@ -29,6 +29,7 @@ const SDK = {
         });
     },
 
+    //Opretter brugeren
     Register: {
         registerStudent: (firstName, lastName, email, newPass, verifyPass, cb) => {
             SDK.request({
@@ -57,6 +58,7 @@ const SDK = {
         }
     },
 
+    //Funktion til at logge en bruger ind, og gemmer en token.
     Login: {
         login: (email, password, cb) => {
             SDK.request({
@@ -83,11 +85,13 @@ const SDK = {
 
     Student: {
 
+        //Her sætter jeg brugeren vha. load-metoden i SDK.Storage via en Token.
         current: () => {
             return SDK.Storage.load("token");
 
         },
 
+        //Henter informationen om brugeren, der er logget ind.
         getProfile: (cb) => {
             SDK.request({
                     method: "GET",
@@ -98,6 +102,7 @@ const SDK = {
                 cb);
         },
 
+        //Henter de events, som brugeren har oprettet.
         getMyEvents: (cb, events) => {
             SDK.request({
                     method: "GET",
@@ -107,13 +112,13 @@ const SDK = {
                 cb);
         },
 
-
+        //Henter navigationsbaren i toppen af hver page.
+        // Koden gør ligeledes, at navigationsbaren skifter alt efter om man er logget ind eller ej.
         loadNavbar: (cb) => {
             $("#nav-container").load("navbar.html", () => {
 
 
                 const currentStudent = SDK.Student.current();
-                // console.log(currentStudent);
 
                 if (currentStudent) {
                     $(".navbar-right").html(`
@@ -139,6 +144,7 @@ const SDK = {
             })
         },
 
+        //Henter de events, som brugeren har tilmeldt sig.
         getAttendingEvents: (cb) => {
             SDK.request({
                 method: "GET",
@@ -151,6 +157,7 @@ const SDK = {
             }, cb);
         },
 
+        //Logger brugeren ud, og sletter token fra databasen.
         logout: (cb) => {
 
             SDK.request({
@@ -167,10 +174,12 @@ const SDK = {
 
     Event: {
 
+        //Her sætter jeg et event vha. load-metoden i SDK.Storage
         currentEvent: () => {
             return SDK.Storage.load("Event");
         },
 
+        //Opretter et event
         createEvent: (eventName, eventLocation, eventDate, eventPrice, eventDescription, cb) => {
             SDK.request({
                 method: "POST",
@@ -187,6 +196,7 @@ const SDK = {
             }, cb);
         },
 
+        //Sletter et event
         deleteEvent: (idEvent, eventName, location, price, eventDate, description, cb) => {
             SDK.request({
                 data: {
@@ -202,6 +212,7 @@ const SDK = {
             }, cb);
         },
 
+        //Opdaterer et event
         updateEvent: (eventName, location, eventDate, price, description, idEvent, cb) => {
             SDK.request({
                 data: {
@@ -223,6 +234,17 @@ const SDK = {
             });
         },
 
+
+        //Denne metode er med til at få updateEvent-metoden til at virke.
+        //Denne metode er lavet i samarbejde med Iben og Jesper. Ibens repository: https://github.com/Ibenfoldager/STFUClient/commit/98e93ad94c02d4980cf0e9512677d1e470565efc
+        Url: {
+            getParameterByName: (name) => {
+                var match = RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
+                return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
+            }
+        },
+
+        //Henter alle events
         getEvents: (cb, events) => {
 
             SDK.request({
@@ -237,6 +259,7 @@ const SDK = {
 
         },
 
+        //Funktion til at deltage i et event
         joinEvent: (idEvent, eventName, location, price, eventDate, description, cb) => {
 
             SDK.request({
@@ -257,6 +280,7 @@ const SDK = {
 
         },
 
+        //Funktion, der henter brugere i specifikke events
         getAttendingStudents: (idEvent, cb) => {
             SDK.request({
                 method: "GET",
@@ -266,6 +290,7 @@ const SDK = {
 
     },
 
+    //Storagemetoden, der gør at en token bliver persistet.
     Storage: {
         prefix: "DoekSocialSDK",
         persist: (key, value) => {
@@ -285,6 +310,8 @@ const SDK = {
         }
     },
 
+
+    //Krypteringsmetoden. Samme metode som på serveren.
     Encryption: {
         encrypt: (encrypt) => {
             if (encrypt !== undefined && encrypt.length !== 0) {
@@ -311,12 +338,8 @@ const SDK = {
             }
         }
     },
-
-//Denne metode er lavet i samarbejde med Iben og Jesper. Ibens repository: https://github.com/Ibenfoldager/STFUClient/commit/98e93ad94c02d4980cf0e9512677d1e470565efc
-    Url: {
-        getParameterByName: (name) => {
-            var match = RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
-            return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
-        }
-    }
 };
+
+//Created by Emil Tønder-Prien, 3.semester HA(IT)
+//Inspiration er hentet fra Jesper Bruun Hansens eksempel på Github:
+//https://github.com/Distribuerede-Systemer-2017/javascript-client

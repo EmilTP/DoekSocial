@@ -1,6 +1,9 @@
 $(document).ready(() => {
 
+    //Indlæser navigationsbaren
     SDK.Student.loadNavbar();
+
+    //Sætter værdierne i et objekt.
     const $myEvents = $("#my-events");
     const $noEvents = $("#nothing-in-my-events");
 
@@ -8,19 +11,20 @@ $(document).ready(() => {
 
     SDK.Student.getMyEvents((cb, Event) => {
 
-
+        //JSON.parse bruges til at konvertere data fra serveren, som er en String, til et JavaScript objekt.
         Event = JSON.parse(Event);
 
-
+        //If-statement, der gør om teksten: "You have not created an event yet..!" vises alt efter om man har oprettet nogle events.
         if (Event.length === 0) {
 
             $noEvents.show();
 
         }
 
+        //Eksekverer en funktion for hver element i Arrayen.
         Event.forEach((event) => {
 
-
+            //Tabellen hvor events bliver indlæst i.
             const myEventHtml = ` <!--Tegnet her gør, at man bare kan skrive det som almindelig tekst, og ikke skrive " + + ". -->
  
 <div class="container">
@@ -55,21 +59,25 @@ $(document).ready(() => {
         </tbody>
     </table>
 </div> `;
+            //Indsætter mit content inden i de valgte elementer.
             $myEvents.append(myEventHtml);
         });
 
+        //Metoden, der sletter et event, køres når der trykkes på knappen.
         $(".delete-button").click(function () {
             const idEvent = $(this).data("event-id-delete");
             const event = Event.find((event) => event.idEvent === idEvent);
 
-            console.log(event);
 
+            //Metoden til at slette en bruger. Tager parametrene ID, navn, lokation, pris, dato og beskrivelse.
             SDK.Event.deleteEvent(idEvent, event.eventName, event.location, event.price, event.eventDate, event.description, (err, data) => {
                 if (err && err.xhr.status === 401) {
                     $(".margin-bottom").addClass("Error")
                 }
                 else if (err) {
                     console.log("Something went wrong");
+
+                    //Pop-up vindue, hvis transaktionen ikke lykkedes. Redirecter efterfølgende til brugerens events.
                     window.alert("Was not able to join the event - Try again")
                 } else {
                     window.location.href = "myEvents.html";
@@ -79,3 +87,6 @@ $(document).ready(() => {
     });
 });
 
+//Created by Emil Tønder-Prien, 3.semester HA(IT)
+//Inspiration er hentet fra Jesper Bruun Hansens eksempel på Github:
+//https://github.com/Distribuerede-Systemer-2017/javascript-client
