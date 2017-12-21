@@ -39,3 +39,5 @@ $(document).ready(() => {
 });
 
 //Created by Emil Tønder-Prien, 3.semester HA(IT)
+//Inspiration er hentet fra Jesper Bruun Hansens eksempel på Github:
+//https://github.com/Distribuerede-Systemer-2017/javascript-client

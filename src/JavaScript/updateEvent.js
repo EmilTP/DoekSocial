@@ -6,14 +6,14 @@ $("#update-button").click(() => {
 
     //Sætter værdierne i et objekt
     const eventName = $("#update-event-name").val();
-    const eventLocation = $("#update-event-location").val();
+    const location = $("#update-event-location").val();
     const eventDate = $("#update-event-date").val();
-    const eventPrice = $("#update-event-price").val();
-    const eventDescription = $("#update-event-description").val();
+    const price = $("#update-event-price").val();
+    const description = $("#update-event-description").val();
     const idEvent = SDK.Url.getParameterByName("eventId");
 
     //Update event metode. Tager parametrene navn, lokation, dato, pris, beskrivelse og ID.
-    SDK.Event.updateEvent(eventName, eventLocation, eventDate, eventPrice, eventDescription, idEvent, (err, cb) => {
+    SDK.Event.updateEvent(eventName, location, eventDate, price, description, idEvent, (err, data) => {
 
         if (err && err.xhr.status === 401) {
             $(".margin-bottom").addClass("Error")

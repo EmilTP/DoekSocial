@@ -15,7 +15,6 @@ $(document).ready(() => {
         //If-else statement, der gør at alle felter skal fyldes ud.
         if (email === "" || password === "") {
             window.alert("All information must be filled out!")
-
         }
 
         //Login-metode. Tager paramentrene Email og password
